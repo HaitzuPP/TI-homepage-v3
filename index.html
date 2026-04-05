@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TAO Institute | Independent Bittensor Research</title>
+<title>TAO Institute | Bittensor Intelligence Platform</title>
+<meta name="description" content="Subnet risk scoring, real-time alerts, and independent research across all 128 Bittensor subnets.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,7 +17,7 @@
     --border-hover: #fffef466;
     --text: #fffef4;
     --text-secondary: rgba(255,254,244,0.8);
-    --text-muted: rgba(255,254,244,0.4);
+    --text-muted: rgba(255,254,244,0.6);
     --text-body: rgba(255,254,244,0.8);
     --positive: #40c057;
     --negative: #f03e3e;
@@ -42,6 +43,27 @@
     padding-left: 40px;
     padding-right: 40px;
   }
+
+  /* ── TOP BANNER ── */
+  .top-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: var(--bg-banner);
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+  .top-banner a {
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .top-banner a:hover { opacity: 0.7; }
 
   /* ── HEADER ── */
   header {
@@ -92,35 +114,11 @@
     flex-direction: column;
     line-height: 1.15;
   }
-  .logo-text span:first-child {
+  .logo-text span {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 2.5px;
     color: var(--text);
-  }
-  .logo-text span:last-child {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    color: var(--text);
-  }
-  .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .theme-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: transparent;
-    color: var(--text);
-    cursor: pointer;
-    font-size: 16px;
   }
   .btn-dashboard {
     display: inline-flex;
@@ -140,14 +138,14 @@
   }
   .btn-dashboard:hover { opacity: 0.85; }
 
-  /* ── HERO SECTION ── */
+  /* ── HERO ── */
   .hero {
     border-bottom: 1px solid var(--border);
     position: relative;
     overflow: hidden;
     background:
-      radial-gradient(circle at 100% 0%, rgba(90,122,255,0.10), transparent 32%),
-      radial-gradient(circle at 0% 0%, rgba(64,192,87,0.08), transparent 28%),
+      radial-gradient(circle at 100% 0%, rgba(90,122,255,0.08), transparent 32%),
+      radial-gradient(circle at 0% 0%, rgba(64,192,87,0.06), transparent 28%),
       var(--bg);
   }
   .hero-inner {
@@ -155,27 +153,27 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 82vh;
-    padding-top: 96px;
-    padding-bottom: 96px;
-    gap: 42px;
+    min-height: 62vh;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    gap: 40px;
     overflow: hidden;
   }
   @media (min-width: 1024px) {
     .hero-inner {
       display: grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: 1fr 380px;
       align-items: end;
       gap: 48px;
     }
   }
   .hero h1 {
-    font-size: clamp(42px, 8vw, 94px);
+    font-size: clamp(36px, 6vw, 72px);
     font-weight: 400;
-    line-height: 1.0;
-    letter-spacing: -3px;
+    line-height: 1.05;
+    letter-spacing: -2.5px;
     color: var(--text);
-    max-width: 680px;
+    max-width: 700px;
   }
   .hero-right {
     display: flex;
@@ -184,10 +182,10 @@
     padding-bottom: 4px;
   }
   .hero-right p {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-muted);
-    max-width: 340px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 380px;
   }
   .hero-ctas {
     display: flex;
@@ -195,17 +193,14 @@
     gap: 12px;
   }
   @media (min-width: 640px) {
-    .hero-ctas {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
+    .hero-ctas { flex-direction: row; flex-wrap: wrap; }
   }
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px 24px;
+    padding: 13px 26px;
     background: var(--text);
     color: var(--bg);
     font-size: 14px;
@@ -220,18 +215,18 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px 24px;
+    padding: 13px 26px;
     background: transparent;
     color: var(--text-muted);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 500;
     text-decoration: none;
     border: 1px solid var(--border);
     transition: all 0.2s;
   }
   .btn-secondary:hover { border-color: var(--border-hover); color: var(--text); }
 
-  /* ── HERO METRIC STRIP ── */
+  /* ── HERO METRICS ── */
   .hero-metrics {
     display: flex;
     gap: 0;
@@ -263,235 +258,412 @@
     color: var(--text-muted);
   }
   @media (max-width: 767px) {
-    .hero-metrics { flex-wrap: wrap; }
-    .hero-metric { flex: 1 1 45%; }
-    .hero-metric:nth-child(2) { border-right: none; }
+    .hero-metrics { flex-wrap: nowrap; }
+    .hero-metric { flex: 1; padding: 12px 14px; }
+    .hero-metric-value { font-size: 16px; }
+    .hero-metric-label { font-size: 8px; letter-spacing: 1px; }
   }
 
-  /* ── TRUSTED BY BAR ── */
+  /* ── TRUSTED BY ── */
   .trusted-by {
     display: flex;
     align-items: center;
-    border-top: 1px solid var(--border);
-    background: var(--bg-banner);
+    justify-content: center;
+    gap: 40px;
+    padding: 28px 40px;
+    border-bottom: 1px solid var(--border);
   }
   .trusted-by-label {
-    display: flex;
-    align-items: center;
-    padding: 16px 28px;
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--text-muted);
     white-space: nowrap;
-    border-right: 1px solid var(--border);
+    flex-shrink: 0;
   }
   .trusted-by-logos {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex: 1;
-    overflow: hidden;
+    gap: 40px;
   }
   .trusted-by-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 7px;
-    padding: 16px 28px;
-    border-right: 1px solid var(--border);
     white-space: nowrap;
   }
-  .trusted-by-item:last-child { border-right: none; }
-  .trusted-by-item img {
-    height: 18px;
-    width: auto;
-    opacity: 0.7;
-    flex-shrink: 0;
-  }
-  .trusted-by-item .tb-text-logo {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-    opacity: 0.7;
-  }
-  .trusted-by-item .tb-text-logo .tao-purple {
-    color: #9b59b6;
-  }
-  .trusted-by-item .tb-text-logo .tao-grey {
-    color: #999;
-  }
+  .trusted-by-item img { height: 20px; width: auto; opacity: 0.4; flex-shrink: 0; }
+  .trusted-by-item .tb-text-logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; opacity: 0.4; }
+  .trusted-by-item .tb-text-logo .tao-purple { color: var(--text); }
+  .trusted-by-item .tb-text-logo .tao-grey { color: var(--text); }
   @media (max-width: 767px) {
-    .trusted-by { flex-wrap: wrap; }
-    .trusted-by-label { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
-    .trusted-by-logos { flex-wrap: wrap; }
-    .trusted-by-item { padding: 12px 16px; }
+    .trusted-by { flex-wrap: wrap; justify-content: flex-start; gap: 20px; padding: 20px 20px; }
+    .trusted-by-label { width: 100%; }
+    .trusted-by-logos { gap: 24px; flex-wrap: wrap; }
   }
 
-  /* ── HOW IT WORKS ── */
-  .how-it-works {
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--text-muted);
+    padding-bottom: 4px;
     border-bottom: 1px solid var(--border);
-    background: var(--bg-banner);
+    display: inline-block;
   }
-  .how-inner {
+
+  /* ── THE CHALLENGE ── */
+  .challenge {
+    border-bottom: 1px solid var(--border);
+  }
+  .challenge-inner {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    padding: 48px 40px;
+    gap: 32px;
+    padding: 80px 40px;
   }
-  .section-label {
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    .challenge-grid { grid-template-columns: 1fr auto 1fr; }
+  }
+  .challenge-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 36px 32px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .challenge-card-step {
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--text-muted);
   }
-  .how-cards {
+  .challenge-card-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 18px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  .challenge-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .challenge-card-body {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+  .challenge-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    margin-top: auto;
+    padding-top: 8px;
+    transition: opacity 0.2s;
+  }
+  .challenge-card-cta:hover { opacity: 0.7; }
+  .challenge-arrow {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    color: var(--text-muted);
+  }
+  .challenge-arrow svg {
+    width: 40px;
+    height: 40px;
+  }
+  @media (min-width: 768px) {
+    .challenge-arrow { display: flex; }
+  }
+  @media (max-width: 767px) {
+    .challenge-card { border-bottom: none; }
+    .challenge-card:last-child { border-top: none; border-bottom: 1px solid var(--border); }
+    .challenge-arrow-mobile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 0;
+      color: var(--text-muted);
+    }
+    .challenge-arrow-mobile svg { width: 24px; height: 24px; transform: rotate(90deg); }
+  }
+  @media (min-width: 768px) {
+    .challenge-arrow-mobile { display: none; }
+  }
+
+  /* ── THREE PRODUCTS ── */
+  .products {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-banner);
+  }
+  .products-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 72px 40px;
+  }
+  .products-grid {
     display: grid;
     grid-template-columns: 1fr;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1080px;
     border: 1px solid var(--border);
   }
   @media (min-width: 768px) {
-    .how-cards { grid-template-columns: repeat(3, 1fr); }
+    .products-grid { grid-template-columns: repeat(3, 1fr); }
   }
-  .how-card {
+  .product-card {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 24px 28px;
+    padding: 28px 28px 32px;
     border-right: 1px solid var(--border);
   }
   @media (max-width: 767px) {
-    .how-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .product-card { border-right: none; border-bottom: 1px solid var(--border); }
   }
-  .how-card:last-child { border-right: none; border-bottom: none; }
-  .how-card-num-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .how-card-num {
+  .product-card:last-child { border-right: none; border-bottom: none; }
+  .product-card-num {
     font-size: 9px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--text-muted);
-    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
-  .how-card-line {
+  .product-card-num .line {
     flex: 1;
     height: 1px;
     background: var(--border);
   }
-  .how-card-title {
-    font-size: 15px;
+  .product-card-title {
+    font-size: 16px;
     font-weight: 700;
-    line-height: 1.35;
+    line-height: 1.3;
     color: var(--text);
   }
-  .how-card-desc {
+  .product-card-desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+  .product-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-size: 12px;
-    line-height: 1.6;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-top: auto;
+    padding-top: 4px;
+    transition: color 0.2s;
+  }
+  .product-card-link:hover { color: var(--text); }
+
+  /* ── USE CASES ── */
+  .use-cases {
+    border-bottom: 1px solid var(--border);
+  }
+  .use-cases-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 72px 40px;
+  }
+  .use-cases-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+  @media (min-width: 768px) {
+    .use-cases-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .use-case-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px 28px 32px;
+    border-right: 1px solid var(--border);
+  }
+  @media (max-width: 767px) {
+    .use-case-card { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+  .use-case-card:last-child { border-right: none; border-bottom: none; }
+  .use-case-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+  }
+  .use-case-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .use-case-body {
+    font-size: 13px;
+    line-height: 1.65;
     color: var(--text-muted);
   }
 
-  /* ── STANDARDISED BENCHMARKING ── */
-  .benchmarking {
+  /* ── PRODUCT SCREENSHOT ── */
+  .screenshot-section {
     border-bottom: 1px solid var(--border);
   }
-  .bench-inner {
-    display: grid;
-    align-items: start;
-    gap: 48px;
-    padding: 80px 40px;
-  }
-  @media (min-width: 1024px) {
-    .bench-inner {
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-    }
-  }
-  .bench-text {
+  .screenshot-inner {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
+    padding: 72px 40px;
+    align-items: center;
   }
-  .bench-text h2 {
-    font-size: clamp(26px, 2.8vw, 40px);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -1px;
-    color: var(--text);
+  .sri-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    width: 100%;
+    max-width: 1120px;
+    border: 1px solid var(--border);
   }
-  .bench-text p {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--text-secondary);
+  @media (min-width: 900px) {
+    .sri-layout {
+      grid-template-columns: 1fr 340px;
+    }
   }
-  .bench-export {
-    font-size: 12px;
-    letter-spacing: 0.3px;
+  .sri-layout-left {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .sri-layout-right {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--border);
+    background: var(--bg-banner);
+  }
+  @media (max-width: 899px) {
+    .sri-layout-right {
+      border-left: none;
+      border-top: 1px solid var(--border);
+    }
+  }
+  .methodology-panel-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-banner);
+  }
+  .methodology-panel-header span {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
     color: var(--text-muted);
   }
-  .bench-link {
+  .methodology-panel-row {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .methodology-panel-row:last-child { border-bottom: none; }
+  .methodology-panel-question {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+  .methodology-panel-metrics {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .methodology-panel-cta {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .methodology-panel-cta a {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    align-self: flex-start;
-    border-bottom: 1.5px solid var(--text);
-    padding-bottom: 1px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--text);
     text-decoration: none;
     transition: opacity 0.2s;
   }
-  .bench-link:hover { opacity: 0.6; }
-
-  /* Browser mockup */
-  .browser-mockup {
+  .methodology-panel-cta a:hover { opacity: 0.7; }
+  .screenshot-frame {
+    width: 100%;
     border: 1px solid var(--border);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.1);
     overflow: hidden;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
   }
-  .browser-bar {
+  .screenshot-bar {
     display: flex;
     align-items: center;
     gap: 6px;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-banner);
     padding: 10px 14px;
+    background: var(--bg-banner);
+    border-bottom: 1px solid var(--border);
   }
-  .browser-dot {
+  .screenshot-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
   }
-  .browser-dot.red { background: #f87171; }
-  .browser-dot.yellow { background: #fbbf24; }
-  .browser-dot.green { background: #4ade80; }
-  .browser-url {
+  .screenshot-dot.red { background: #f87171; }
+  .screenshot-dot.yellow { background: #fbbf24; }
+  .screenshot-dot.green { background: #4ade80; }
+  .screenshot-url {
     display: flex;
     align-items: center;
-    gap: 6px;
-    border-bottom: 1px solid var(--border);
+    padding: 8px 14px;
     background: var(--bg-banner);
-    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
   }
-  .browser-url span {
+  .screenshot-url span {
     margin: 0 auto;
     font-size: 10px;
     letter-spacing: 0.2px;
     color: var(--text-muted);
   }
-  .browser-body {
+  .screenshot-body {
+    background: var(--bg);
+    padding: 0;
+    min-height: 320px;
     display: flex;
+    align-items: stretch;
   }
-  .browser-sidebar {
+  .screenshot-sidebar {
     display: flex;
     flex-direction: column;
     gap: 1px;
@@ -500,22 +672,19 @@
     padding: 10px;
     min-width: 90px;
   }
-  .browser-sidebar span {
+  .screenshot-sidebar span {
     padding: 4px 8px;
     font-size: 10px;
     color: var(--text-muted);
     white-space: nowrap;
   }
-  .browser-sidebar span.active {
+  .screenshot-sidebar span.active {
     background: var(--bg);
     border: 1px solid var(--border);
     font-weight: 600;
     color: var(--text);
   }
-  .browser-main {
-    flex: 1;
-    min-width: 0;
-  }
+  .screenshot-main { flex: 1; min-width: 0; }
   .sri-table {
     width: 100%;
     border-collapse: collapse;
@@ -523,7 +692,7 @@
   }
   .sri-table th {
     text-align: left;
-    padding: 10px 16px;
+    padding: 12px 16px;
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
@@ -533,20 +702,14 @@
     border-bottom: 1px solid var(--border);
   }
   .sri-table td {
-    padding: 12px 16px;
+    padding: 14px 16px;
     border-bottom: 1px solid var(--border);
     color: var(--text-secondary);
     font-size: 13px;
   }
   .sri-table tr:last-child td { border-bottom: none; }
-  .sri-table .subnet-name {
-    font-weight: 600;
-    color: var(--text);
-  }
-  .sri-table .score {
-    font-weight: 700;
-    color: var(--text);
-  }
+  .sri-table .subnet-name { font-weight: 600; color: var(--text); }
+  .sri-table .score { font-weight: 700; color: var(--text); }
   .badge-green {
     display: inline-block;
     padding: 2px 8px;
@@ -557,14 +720,167 @@
     background: rgba(64,192,87,0.1);
     border: 1px solid rgba(64,192,87,0.2);
   }
+  .badge-amber {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--warning);
+    background: rgba(255,146,43,0.1);
+    border: 1px solid rgba(255,146,43,0.2);
+  }
 
-  /* ── LATEST RESEARCH ── */
-  .latest-research {
+  /* ── SRI LEGEND ── */
+  .sri-legend {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .sri-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sri-legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .sri-legend-dot.green { background: var(--positive); }
+  .sri-legend-dot.amber { background: var(--warning); }
+  .sri-legend-dot.red { background: var(--negative); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-banner);
+  }
+  .testimonials-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 72px 40px;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+  @media (min-width: 768px) {
+    .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+  }
+  @media (max-width: 767px) {
+    .testimonial-card { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+  .testimonial-card:last-child { border-right: none; border-bottom: none; }
+  .testimonial-quote {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+  .testimonial-quote::before { content: '\201C'; }
+  .testimonial-quote::after { content: '\201D'; }
+  .testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .testimonial-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .testimonial-role {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* ── PRICING TABLE ── */
+  .pricing-section {
     border-bottom: 1px solid var(--border);
   }
-  .lr-inner {
-    padding: 80px 40px;
+  .pricing-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 72px 40px;
+    align-items: center;
   }
+  .pricing-table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+  }
+  .pricing-table th {
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    border-bottom: 2px solid var(--border);
+    background: var(--bg-banner);
+  }
+  .pricing-table th:first-child {
+    text-align: left;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+  .pricing-table td {
+    padding: 14px 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .pricing-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .pricing-check { color: var(--positive); font-weight: 600; }
+  .pricing-x { color: var(--text-muted); opacity: 0.4; }
+  .pricing-note { font-size: 12px; color: var(--text-muted); }
+  .pricing-highlight {
+    color: var(--positive);
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .pricing-delay {
+    color: var(--warning);
+    font-size: 12px;
+  }
+  .pricing-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ── LATEST RESEARCH ── */
+  .latest-research { border-bottom: 1px solid var(--border); }
+  .lr-inner { padding: 80px 40px; }
   .lr-header {
     display: flex;
     align-items: center;
@@ -575,6 +891,7 @@
     border-bottom: 1.5px solid var(--border);
     padding-bottom: 1px;
     font-size: 13px;
+    font-weight: 600;
     color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.2s;
@@ -603,28 +920,13 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 160px;
+    justify-content: flex-end;
+    height: 140px;
     padding: 16px;
     background: #080a0d;
     overflow: hidden;
   }
-  .lr-card-header-top {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 18px 18px;
-    gap: 2.5px;
-  }
-  .lr-card-header-top span {
-    width: 100%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: rgba(255,254,244,0.15);
-  }
   .lr-card-header-bottom {
-    position: relative;
-    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -640,19 +942,13 @@
     color: var(--text-muted);
     border: 1px solid var(--border);
   }
-  .lr-card-date {
-    font-size: 11px;
-    color: var(--text-muted);
-  }
+  .lr-card-date { font-size: 11px; color: var(--text-muted); }
   .lr-card-body {
     display: flex;
     flex: 1;
     flex-direction: column;
     gap: 10px;
     padding: 20px;
-  }
-  .lr-card-body .lr-card-badge {
-    margin-bottom: 0;
   }
   .lr-card-title {
     font-size: 16px;
@@ -665,46 +961,126 @@
     color: var(--text-muted);
     margin-top: auto;
   }
-  .lr-card-meta strong {
-    font-weight: 600;
-    color: var(--text-secondary);
-  }
+  .lr-card-meta strong { font-weight: 600; color: var(--text-secondary); }
 
-  /* ── BECOME A MEMBER / CONTACT ── */
-  .contact {
+  /* ── LEADERSHIP ── */
+  .leadership {
     border-bottom: 1px solid var(--border);
     background: var(--bg-banner);
   }
-  .contact-inner {
+  .leadership-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 72px 40px;
+  }
+  .leadership-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .leadership-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    max-width: 440px;
+  }
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+  @media (min-width: 768px) {
+    .leadership-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .leader-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 36px 32px;
+    border-right: 1px solid var(--border);
+  }
+  @media (max-width: 767px) {
+    .leader-card { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+  .leader-card:last-child { border-right: none; border-bottom: none; }
+  .leader-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 2px solid var(--border);
+  }
+  .leader-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .leader-avatar-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,254,244,0.06);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .leader-info { display: flex; flex-direction: column; gap: 6px; }
+  .leader-name-row { display: flex; align-items: center; gap: 10px; }
+  .leader-name { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.2; }
+  .leader-x {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .leader-x:hover { color: var(--text); }
+  .leader-role {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+  }
+  .leader-bio {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  /* ── REQUEST ACCESS ── */
+  .request-access {
+    border-bottom: 1px solid var(--border);
+  }
+  .request-inner {
     display: grid;
     align-items: start;
     gap: 60px;
     padding: 80px 40px;
   }
   @media (min-width: 1024px) {
-    .contact-inner { grid-template-columns: 1fr 1fr; }
+    .request-inner { grid-template-columns: 1fr 1fr; }
   }
-  .contact-left {
+  .request-left {
     display: flex;
     flex-direction: column;
     gap: 18px;
   }
-  .contact-left h2 {
+  .request-left h2 {
     font-size: clamp(26px, 3vw, 38px);
     font-weight: 800;
     line-height: 1.15;
     letter-spacing: -1px;
     color: var(--text);
   }
-  .contact-left > p {
-    font-size: 14px;
-    line-height: 1.75;
+  .request-left > p {
+    font-size: 15px;
+    line-height: 1.7;
     color: var(--text-secondary);
   }
-  .checklist {
-    list-style: none;
-    margin-top: 4px;
-  }
+  .checklist { list-style: none; margin-top: 4px; }
   .checklist li {
     position: relative;
     padding: 10px 0 10px 20px;
@@ -723,28 +1099,22 @@
     font-weight: 700;
     color: var(--positive);
   }
-
-  /* Form */
-  .contact-form {
+  .request-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
   }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-label {
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.5px;
     color: var(--text-muted);
   }
   .form-input {
     padding: 12px 14px;
-    background: var(--bg);
+    background: var(--bg-banner);
     border: 1px solid var(--border);
     color: var(--text);
     font-family: 'Poppins', sans-serif;
@@ -754,11 +1124,7 @@
   }
   .form-input::placeholder { color: var(--text-muted); }
   .form-input:focus { border-color: var(--border-hover); }
-  .form-checkboxes {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  .form-checkboxes { display: flex; flex-direction: column; gap: 0; }
   .form-checkbox-label {
     display: flex;
     align-items: center;
@@ -794,10 +1160,72 @@
   }
   .btn-submit:hover { opacity: 0.85; }
 
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
+  /* ── NEWSLETTER ── */
+  .newsletter-section {
+    border-bottom: 1px solid var(--border);
   }
+  .newsletter-section-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 56px 40px;
+    flex-wrap: wrap;
+  }
+  .newsletter-section-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .newsletter-section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .newsletter-section-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .newsletter-section-form {
+    display: flex;
+    gap: 0;
+    min-width: 320px;
+  }
+  .newsletter-section-form input {
+    padding: 13px 16px;
+    background: var(--bg-banner);
+    border: 1px solid var(--border);
+    border-right: none;
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    outline: none;
+    flex: 1;
+    min-width: 0;
+  }
+  .newsletter-section-form input::placeholder { color: var(--text-muted); }
+  .newsletter-section-form button {
+    padding: 13px 24px;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+  .newsletter-section-form button:hover { opacity: 0.85; }
+  @media (max-width: 767px) {
+    .newsletter-section-inner { flex-direction: column; align-items: flex-start; }
+    .newsletter-section-form { min-width: 100%; width: 100%; }
+  }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--border); }
   .footer-inner {
     display: flex;
     justify-content: space-between;
@@ -806,20 +1234,9 @@
     padding: 48px 40px 40px;
     flex-wrap: wrap;
   }
-  .footer-brand {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .footer-cols {
-    display: flex;
-    gap: 64px;
-  }
-  .footer-col {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+  .footer-cols { display: flex; gap: 64px; flex-wrap: wrap; }
+  .footer-col { display: flex; flex-direction: column; gap: 10px; }
   .footer-col-title {
     margin-bottom: 4px;
     font-size: 9.5px;
@@ -845,52 +1262,87 @@
     color: var(--text-muted);
     flex-wrap: wrap;
   }
-  .footer-bottom a {
+  .footer-bottom a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-bottom a:hover { color: var(--text); }
+  .footer-social {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .footer-social a {
+    font-size: 13px;
     color: var(--text-muted);
     text-decoration: none;
     transition: color 0.2s;
   }
-  .footer-bottom a:hover { color: var(--text); }
+  .footer-social a:hover { color: var(--text); }
 
-  /* ── HALFTONE CANVAS ── */
-  .halftone-canvas {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    width: 680px;
-    height: 680px;
-    opacity: 0.07;
-    pointer-events: none;
-  }
-
-  /* ── ENTRANCE ANIMATIONS ── */
+  /* ── ANIMATIONS ── */
   .reveal {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(20px);
     transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
 
-  /* ── UTILITIES ── */
+  /* ── RESPONSIVE ── */
   @media (max-width: 767px) {
-    .container, .how-inner, .bench-inner, .wyg-inner, .lr-inner, .contact-inner, .footer-inner, .footer-bottom {
+    .container, .challenge-inner, .products-inner, .screenshot-inner, .lr-inner, .request-inner, .footer-inner, .footer-bottom, .leadership-inner, .pricing-inner, .newsletter-section-inner {
       padding-left: 20px;
       padding-right: 20px;
     }
     .footer-cols { gap: 40px; }
+
+    /* Hero */
+    .hero-inner { min-height: auto; padding-top: 48px; padding-bottom: 48px; }
+
+    /* SRI screenshot: hide sidebar on mobile, allow table scroll */
+    .screenshot-sidebar { display: none; }
+    .screenshot-main { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .sri-table { min-width: 520px; }
+
+    /* Pricing table scroll */
+    .pricing-table { min-width: 560px; }
+    .pricing-inner { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* SRI legend stacks vertically */
+    .sri-legend { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+    /* Request form full width button */
+    .btn-submit { align-self: stretch; justify-content: center; }
+
+    /* Research cards stack */
+    .lr-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .lr-card:last-child { border-bottom: none; }
+
+    /* Leader cards: stack avatar + info */
+    .leader-card { flex-direction: column; gap: 16px; }
+
+    /* Footer columns: 2-col grid */
+    .footer-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-inner { flex-direction: column; gap: 32px; }
+  }
+
+  /* Small phones */
+  @media (max-width: 400px) {
+    .hero h1 { letter-spacing: -1.5px; }
+    .hero-metric { padding: 10px 12px; }
+    .hero-metric-value { font-size: 16px; }
+    .top-banner { font-size: 11px; padding: 8px 12px; }
+    .btn-dashboard { padding: 8px 14px; font-size: 11px; letter-spacing: 1px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ════════ HEADER ════════ -->
+<!-- ═══ TOP BANNER ═══ -->
+<div class="top-banner">
+  dTAO is live. 128 subnets now have independent token markets. Know which ones are worth your capital. <a href="/research">Start here &#8594;</a>
+</div>
+
+<!-- ═══ HEADER ═══ -->
 <header>
   <div class="container header-inner">
     <a href="/" class="logo">
@@ -899,28 +1351,21 @@
         <span class="d4"></span><span class="d5"></span><span class="d6"></span>
         <span class="d7"></span><span class="d8"></span>
       </div>
-      <div class="logo-text">
-        <span>TAO</span>
-        <span>INSTITUTE</span>
-      </div>
+      <div class="logo-text"><span>TAO</span><span>INSTITUTE</span></div>
     </a>
-    <div class="header-actions">
-      <button class="theme-toggle" aria-label="Toggle theme">&#9788;</button>
-      <a href="/sri" class="btn-dashboard">VIEW DASHBOARD &rarr;</a>
-    </div>
+    <a href="/research" class="btn-dashboard">VIEW RESEARCH &#8594;</a>
   </div>
 </header>
 
-<!-- ════════ HERO ════════ -->
+<!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="container hero-inner">
-    <canvas id="halftone" class="halftone-canvas"></canvas>
-    <h1 class="reveal">Institutional Research Terminal for Bittensor</h1>
-    <div class="hero-right reveal reveal-delay-1">
-      <p>128 subnets scored, ranked, and monitored in real time. Empowering investors to select the best crypto enabled AI teams on Bittensor.</p>
+    <h1 class="reveal">Navigate the Bittensor Economy with Institutional Research and Analytics</h1>
+    <div class="hero-right reveal reveal-d1">
+      <p>Subnets are building the infrastructure for decentralised intelligence on Bittensor. TAO Institute helps investors identify and diligence the subnets worth participating in.</p>
       <div class="hero-ctas">
-        <a href="#contact" class="btn-primary">Become a free member &rarr;</a>
-        <a href="/research" class="btn-secondary">View research &rarr;</a>
+        <a href="#request" class="btn-primary">Request Enterprise Access &#8594;</a>
+        <a href="/research" class="btn-secondary">Read latest research &#8594;</a>
       </div>
       <div class="hero-metrics">
         <div class="hero-metric">
@@ -940,216 +1385,363 @@
   </div>
 </section>
 
-<!-- ════════ TRUSTED BY ════════ -->
+<!-- ═══ TRUSTED BY ═══ -->
 <div class="trusted-by">
-  <div class="trusted-by-label">Trusted by</div>
+  <span class="trusted-by-label">Trusted by</span>
   <div class="trusted-by-logos">
-    <div class="trusted-by-item">
-      <img src="logos/general-tensor.svg" alt="General Tensor">
-    </div>
-    <div class="trusted-by-item">
-      <img src="logos/tensora.png" alt="Tensora">
-    </div>
-    <div class="trusted-by-item">
-      <span class="tb-text-logo"><span class="tao-purple">tao</span><span class="tao-grey">.com</span></span>
-    </div>
-    <div class="trusted-by-item">
-      <img src="logos/trusted-stake-light.svg" alt="Trusted Stake">
-    </div>
+    <span class="trusted-by-item"><img src="logos/general-tensor.svg" alt="General Tensor"></span>
+    <span class="trusted-by-item"><img src="logos/tensora.png" alt="Tensora"></span>
+    <span class="trusted-by-item"><span class="tb-text-logo"><span class="tao-purple">tao</span><span class="tao-grey">.com</span></span></span>
+    <span class="trusted-by-item"><img src="logos/trusted-stake-light.svg" alt="Trusted Stake"></span>
   </div>
 </div>
 
-<!-- ════════ STANDARDISED BENCHMARKING ════════ -->
-<section class="benchmarking">
-  <div class="container bench-inner">
-    <div class="bench-text reveal">
-      <h2>Standardised Benchmarking for Subnet Health</h2>
-      <p>TAO Institute's Subnet Risk Index (SRI) scores subnets on 13 metrics to inform the health and investability of all 128+ subnets.</p>
-      <p class="bench-export">Export to Excel &middot; JSON API &middot; Google Sheets</p>
-      <a href="/sri" class="bench-link">View Dashboard &#8599;</a>
-    </div>
-    <div class="browser-mockup reveal reveal-delay-1">
-      <div class="browser-bar">
-        <span class="browser-dot red"></span>
-        <span class="browser-dot yellow"></span>
-        <span class="browser-dot green"></span>
+<!-- ═══ THE CHALLENGE ═══ -->
+<section class="challenge">
+  <div class="container challenge-inner">
+    <p class="section-label reveal">The investor journey</p>
+    <div class="challenge-grid reveal reveal-d1">
+      <div class="challenge-card">
+        <span class="challenge-card-step">Step 01</span>
+        <div class="challenge-card-icon">&#9906;</div>
+        <p class="challenge-card-title">Find your hunting ground</p>
+        <p class="challenge-card-body">128 subnets are live and growing. Each represents a bet on a different AI use-case, team, and market. TAO Institute Research evaluates the market opportunity, team capability, and competitive positioning so you can identify which subnets are worth backing.</p>
+        <a href="/research" class="challenge-card-cta">Subscribe to Our Research &#8594;</a>
       </div>
-      <div class="browser-url">
-        <span>app.tao-institute.xyz &mdash; SRI Index</span>
+      <div class="challenge-arrow">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 20h20M22 14l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-      <div class="browser-body">
-        <div class="browser-sidebar">
-          <span class="active">SRI Index</span>
-          <span>Subnets</span>
-          <span>Research</span>
-          <span>Methodology</span>
-          <span>Tools</span>
-          <span>API</span>
-          <span>Alerts</span>
-          <span>Downloads</span>
-        </div>
-        <div class="browser-main">
-          <table class="sri-table">
-            <thead>
-              <tr>
-                <th>Subnet</th>
-                <th>Score</th>
-                <th>Rating</th>
-                <th>Emiss. Rev.</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="subnet-name">Targon (SN4)</td>
-                <td class="score">95.0</td>
-                <td><span class="badge-green">GREEN</span></td>
-                <td>9.8% net</td>
-              </tr>
-              <tr>
-                <td class="subnet-name">basilica (SN39)</td>
-                <td class="score">90.8</td>
-                <td><span class="badge-green">GREEN</span></td>
-                <td>3.6% net</td>
-              </tr>
-              <tr>
-                <td class="subnet-name">Gradients (SN56)</td>
-                <td class="score">90.4</td>
-                <td><span class="badge-green">GREEN</span></td>
-                <td>4.2% net</td>
-              </tr>
-              <tr>
-                <td class="subnet-name">Bitcast (SN93)</td>
-                <td class="score">85.4</td>
-                <td><span class="badge-green">GREEN</span></td>
-                <td>2.7% net</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="challenge-arrow-mobile">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 20h20M22 14l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="challenge-card">
+        <span class="challenge-card-step">Step 02</span>
+        <div class="challenge-card-icon">&#9888;</div>
+        <p class="challenge-card-title">Protect your downside</p>
+        <p class="challenge-card-body">Once capital is deployed, risks compound. Validator concentration distorts emissions, thin liquidity traps capital, and deregistration can zero positions overnight. TAO Institute's Subnet Risk Index (SRI) scores mechanism design, economic sustainability, and security risks across every active subnet.</p>
+        <a href="/sri" class="challenge-card-cta">Explore the Subnet Risk Index (SRI) &#8594;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════ HOW IT WORKS ════════ -->
-<section class="how-it-works">
-  <div class="container how-inner">
+<!-- ═══ THREE PRODUCTS ═══ -->
+<section class="products">
+  <div class="container products-inner">
+    <p class="section-label reveal">How we solve it</p>
+    <div class="products-grid reveal reveal-d1">
+      <div class="product-card">
+        <span class="product-card-num">01 <span class="line"></span> Subnet Risk Index (SRI)</span>
+        <p class="product-card-title">Know which subnets are safe before you deploy</p>
+        <p class="product-card-desc">Every active subnet scored across emission sustainability, liquidity depth, validator concentration, and token mechanism health. Colour-coded green, amber, or red. Updated every hour.</p>
+        <a href="/sri" class="product-card-link">View live dashboard &#8599;</a>
+      </div>
+      <div class="product-card">
+        <span class="product-card-num">02 <span class="line"></span> TAO Alerts</span>
+        <p class="product-card-title">React to risk before it hits your portfolio</p>
+        <p class="product-card-desc">Threshold alerts on score changes, deregistration risk, stake shifts, and large TAO flows. Delivered via email or webhook. Configure once and stay protected across every position.</p>
+        <a href="#request" class="product-card-link">See alert types &#8594;</a>
+      </div>
+      <div class="product-card">
+        <span class="product-card-num">03 <span class="line"></span> TAO Research</span>
+        <p class="product-card-title">Make allocation decisions with full diligence</p>
+        <p class="product-card-desc">Independent coverage on active subnets. Team evaluation, mechanism design analysis, competitive positioning, and monthly management interviews. The work you would do yourself, already done.</p>
+        <a href="/research" class="product-card-link">Read latest report &#8599;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCT SCREENSHOT ═══ -->
+<section class="screenshot-section">
+  <div class="container screenshot-inner">
+    <p class="section-label reveal">The Subnet Risk Index (SRI), live</p>
+    <div class="sri-layout reveal reveal-d1">
+      <div class="sri-layout-left">
+        <div class="screenshot-bar">
+          <span class="screenshot-dot red"></span>
+          <span class="screenshot-dot yellow"></span>
+          <span class="screenshot-dot green"></span>
+        </div>
+        <div class="screenshot-url"><span>app.tao-institute.xyz</span></div>
+        <div class="screenshot-body">
+          <div class="screenshot-sidebar">
+            <span class="active">Subnet Risk Index (SRI)</span>
+            <span>Subnets</span>
+            <span>Research</span>
+            <span>Alerts</span>
+            <span>API</span>
+          </div>
+          <div class="screenshot-main">
+            <table class="sri-table">
+              <thead>
+                <tr>
+                  <th>Subnet</th>
+                  <th>SRI Score</th>
+                  <th>Rating</th>
+                  <th>Trend</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="subnet-name">Targon (SN4)</td>
+                  <td class="score">95.0</td>
+                  <td><span class="badge-green">GREEN</span></td>
+                  <td style="color:var(--positive)">+2.1</td>
+                </tr>
+                <tr>
+                  <td class="subnet-name">basilica (SN39)</td>
+                  <td class="score">90.8</td>
+                  <td><span class="badge-green">GREEN</span></td>
+                  <td style="color:var(--positive)">+0.4</td>
+                </tr>
+                <tr>
+                  <td class="subnet-name">Gradients (SN56)</td>
+                  <td class="score">90.4</td>
+                  <td><span class="badge-green">GREEN</span></td>
+                  <td style="color:var(--text-muted)">0.0</td>
+                </tr>
+                <tr>
+                  <td class="subnet-name">Bitcast (SN93)</td>
+                  <td class="score">85.4</td>
+                  <td><span class="badge-green">GREEN</span></td>
+                  <td style="color:var(--negative)">-1.2</td>
+                </tr>
+                <tr>
+                  <td class="subnet-name">Omega (SN24)</td>
+                  <td class="score">62.1</td>
+                  <td><span class="badge-amber">AMBER</span></td>
+                  <td style="color:var(--negative)">-4.7</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sri-layout-right">
+        <div class="methodology-panel-header">
+          <span>Scoring Methodology</span>
+        </div>
+        <div class="methodology-panel-row">
+          <p class="methodology-panel-question">Is the subnet attracting and retaining capital relative to its emission schedule?</p>
+          <p class="methodology-panel-metrics">Net Capital Flow Momentum, Emission Share, Delist Distance, Capital Retention</p>
+        </div>
+        <div class="methodology-panel-row">
+          <p class="methodology-panel-question">How healthy is the subnet's liquidity and token economics?</p>
+          <p class="methodology-panel-metrics">Liquidity Depth, Token Supply Maturity, Miner Economics Viability</p>
+        </div>
+        <div class="methodology-panel-row">
+          <p class="methodology-panel-question">Is the subnet's economic engine self-sustaining?</p>
+          <p class="methodology-panel-metrics">Coverage Ratio, Miner Churn Rate, Reward Distribution Concentration</p>
+        </div>
+        <div class="methodology-panel-row">
+          <p class="methodology-panel-question">How concentrated and active is the subnet's validator infrastructure?</p>
+          <p class="methodology-panel-metrics">Validator Stake Concentration, Validation Freshness</p>
+        </div>
+        <div class="methodology-panel-cta">
+          <a href="/methodology">View full methodology &#8594;</a>
+        </div>
+      </div>
+    </div>
+    <div class="sri-legend reveal reveal-d2">
+      <span class="sri-legend-item"><span class="sri-legend-dot green"></span> Green: healthy risk profile</span>
+      <span class="sri-legend-item"><span class="sri-legend-dot amber"></span> Amber: monitor closely</span>
+      <span class="sri-legend-item"><span class="sri-legend-dot red"></span> Red: elevated risk, review before holding</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing-section">
+  <div class="container pricing-inner">
     <p class="section-label reveal">How it works</p>
-    <div class="how-cards reveal reveal-delay-1">
-      <div class="how-card">
-        <div class="how-card-num-row"><span class="how-card-num">01</span><span class="how-card-line"></span></div>
-        <p class="how-card-title">Subnet Risk Index ratings across your investable universe</p>
-        <p class="how-card-desc">Every active subnet scored on 13 metrics: validator health, stake concentration, pruning rank, developer activity, and token economics. Refreshed hourly.</p>
+    <table class="pricing-table reveal reveal-d1">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Free Account</th>
+          <th>Enterprise Member</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Subnet Risk Index (SRI)</td>
+          <td><span class="pricing-check">&#10003; Full access</span></td>
+          <td><span class="pricing-check">&#10003; Full access</span></td>
+        </tr>
+        <tr>
+          <td>Subnet Analytics</td>
+          <td><span class="pricing-check">&#10003; Included</span></td>
+          <td><span class="pricing-check">&#10003; Included</span></td>
+        </tr>
+        <tr>
+          <td>Data Dashboards</td>
+          <td><span class="pricing-check">&#10003; Included</span></td>
+          <td><span class="pricing-check">&#10003; Included</span></td>
+        </tr>
+        <tr>
+          <td>Analyst Coverage</td>
+          <td><span class="pricing-delay">Published 14 days after enterprise</span></td>
+          <td><span class="pricing-highlight">&#10003; Real-time access</span></td>
+        </tr>
+        <tr>
+          <td>Custom Dashboards &amp; Alerts</td>
+          <td><span class="pricing-x">&#10005;</span></td>
+          <td><span class="pricing-highlight">&#10003; Full access, real-time</span></td>
+        </tr>
+        <tr>
+          <td>Subnet Diligence (Tokenomics, Technical Audit)</td>
+          <td><span class="pricing-x">&#10005;</span></td>
+          <td><span class="pricing-highlight">&#10003; At request</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pricing-ctas reveal reveal-d2">
+      <a href="#request" class="btn-primary">Request Enterprise Access &#8594;</a>
+      <a href="/register" class="btn-secondary">Create Free Account &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REQUEST ACCESS ═══ -->
+<section class="request-access" id="request">
+  <div class="container request-inner">
+    <div class="request-left reveal">
+      <h2>Request Enterprise Access</h2>
+      <p>Tell us what you're looking for.</p>
+      <ul class="checklist">
+        <li>Real-time access to TAO Institute universe of subnet research</li>
+        <li>Custom dashboards and enterprise alerts fit for your investment strategy</li>
+        <li>API access for multi-position monitoring and portfolio integration</li>
+      </ul>
+    </div>
+    <div class="request-form reveal reveal-d1">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-input" placeholder="Your name">
       </div>
-      <div class="how-card">
-        <div class="how-card-num-row"><span class="how-card-num">02</span><span class="how-card-line"></span></div>
-        <p class="how-card-title">Alerts on SRI, Dereg and Taoflow</p>
-        <p class="how-card-desc">Threshold-based alerts via email or webhook. Triggers fire SRI Rating Movements, Deregistration, TAO Flow and more.</p>
+      <div class="form-group">
+        <label class="form-label">Business Email</label>
+        <input type="email" class="form-input" placeholder="name@firm.com">
       </div>
-      <div class="how-card">
-        <div class="how-card-num-row"><span class="how-card-num">03</span><span class="how-card-line"></span></div>
-        <p class="how-card-title">Real-time research reports on every subnet</p>
-        <p class="how-card-desc">Product launches, performance updates, monthly management interviews. Track the growth of the best teams in Bittensor.</p>
+      <div class="form-group">
+        <label class="form-label">Organisation</label>
+        <input type="text" class="form-input" placeholder="Your organisation">
+      </div>
+      <button class="btn-submit">Request Enterprise Access &#8594;</button>
+      <p style="font-size:11px;color:var(--text-muted);margin-top:4px;">Custom pricing based on portfolio size and data requirements. We typically respond within 24 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LEADERSHIP ═══ -->
+<section class="leadership">
+  <div class="container leadership-inner">
+    <div class="leadership-header">
+      <p class="section-label reveal">Leadership</p>
+      <p class="leadership-subtitle reveal reveal-d1">Built by researchers and engineers from the Bittensor ecosystem.</p>
+    </div>
+    <div class="leadership-grid reveal reveal-d1">
+      <div class="leader-card">
+        <div class="leader-avatar">
+          <img src="logos/haitzu.jpg" alt="Jack Ai-Leung" onerror="this.parentElement.innerHTML='<div class=leader-avatar-fallback>J</div>'">
+        </div>
+        <div class="leader-info">
+          <div class="leader-name-row">
+            <p class="leader-name">Jack Ai-Leung</p>
+            <a href="https://x.com/haitzu" target="_blank" rel="noopener" class="leader-x">@haitzu &#8599;</a>
+          </div>
+          <p class="leader-role">Co-Founder · Product &amp; Data</p>
+          <p class="leader-bio">Designed and built the Subnet Risk Index (SRI) scoring engine and data infrastructure. Engineers the analytics pipeline behind TAO Institute.</p>
+        </div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">
+          <img src="logos/sammy.png" alt="0xSammy" onerror="this.parentElement.innerHTML='<div class=leader-avatar-fallback>S</div>'">
+        </div>
+        <div class="leader-info">
+          <div class="leader-name-row">
+            <p class="leader-name">0xSammy</p>
+            <a href="https://x.com/0xSammy" target="_blank" rel="noopener" class="leader-x">@0xSammy &#8599;</a>
+          </div>
+          <p class="leader-role">Co-Founder · Research</p>
+          <p class="leader-bio">Leads investment research and subnet coverage at TAO Institute. Authored initiation-of-coverage reports across 20+ Bittensor subnets.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- ════════ LATEST RESEARCH ════════ -->
+<!-- ═══ LATEST RESEARCH ═══ -->
 <section class="latest-research">
   <div class="container lr-inner">
     <div class="lr-header reveal">
       <p class="section-label">Latest Research</p>
-      <a href="/research" class="see-all-link">See all &rarr;</a>
+      <a href="/research" class="see-all-link">See all &#8594;</a>
     </div>
-    <div class="lr-grid reveal reveal-delay-1">
+    <div class="lr-grid reveal reveal-d1">
+      <a href="/research/yanez-sn54-initiation-of-coverage" class="lr-card">
+        <div class="lr-card-header">
+          <div class="lr-card-header-bottom">
+            <span class="lr-card-badge">Investment Thesis</span>
+            <span class="lr-card-date">Apr 2, 2026</span>
+          </div>
+        </div>
+        <div class="lr-card-body">
+          <p class="lr-card-title">Yanez (SN54) : Initiation of Coverage</p>
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.5;margin-top:4px;">Decentralised search infrastructure with strong emission viability. SRI Green.</p>
+          <p class="lr-card-meta"><strong>Jack Ai-Leung</strong> · Apr 2, 2026 · 8 min</p>
+        </div>
+      </a>
+      <a href="/research/bitmind-sn34-initiation-of-coverage" class="lr-card">
+        <div class="lr-card-header">
+          <div class="lr-card-header-bottom">
+            <span class="lr-card-badge">Investment Thesis</span>
+            <span class="lr-card-date">Apr 2, 2026</span>
+          </div>
+        </div>
+        <div class="lr-card-body">
+          <p class="lr-card-title">Bitmind (SN34) : Initiation of Coverage</p>
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.5;margin-top:4px;">AI-generated media detection with defensible moat. Validator concentration watch.</p>
+          <p class="lr-card-meta"><strong>Jack Ai-Leung</strong> · Apr 2, 2026 · 8 min</p>
+        </div>
+      </a>
       <a href="/research/test-metanova" class="lr-card">
         <div class="lr-card-header">
-          <div class="lr-card-header-top"><span></span><span></span><span></span><span></span></div>
           <div class="lr-card-header-bottom">
             <span class="lr-card-badge">Monthly Update</span>
             <span class="lr-card-date">Apr 2, 2026</span>
           </div>
         </div>
         <div class="lr-card-body">
-          <span class="lr-card-badge">Monthly Update</span>
-          <p class="lr-card-title">Test - Metanova</p>
-          <p class="lr-card-meta"><strong>0xSammy</strong> &middot; Apr 2, 2026 &middot; 1 min</p>
-        </div>
-      </a>
-      <a href="/research/yanez-sn54-initiation-of-coverage" class="lr-card">
-        <div class="lr-card-header">
-          <div class="lr-card-header-top"><span></span><span></span><span></span><span></span></div>
-          <div class="lr-card-header-bottom">
-            <span class="lr-card-badge">Investment Thesis</span>
-            <span class="lr-card-date">Apr 2, 2026</span>
-          </div>
-        </div>
-        <div class="lr-card-body">
-          <span class="lr-card-badge">Investment Thesis</span>
-          <p class="lr-card-title">Yanez (SN54) &mdash; Initiation of Coverage</p>
-          <p class="lr-card-meta"><strong>Haitzu</strong> &middot; Apr 2, 2026 &middot; 8 min</p>
-        </div>
-      </a>
-      <a href="/research/bitmind-sn34-initiation-of-coverage" class="lr-card">
-        <div class="lr-card-header">
-          <div class="lr-card-header-top"><span></span><span></span><span></span><span></span></div>
-          <div class="lr-card-header-bottom">
-            <span class="lr-card-badge">Investment Thesis</span>
-            <span class="lr-card-date">Apr 2, 2026</span>
-          </div>
-        </div>
-        <div class="lr-card-body">
-          <span class="lr-card-badge">Investment Thesis</span>
-          <p class="lr-card-title">Bitmind (SN34) &mdash; Initiation of Coverage</p>
-          <p class="lr-card-meta"><strong>Haitzu</strong> &middot; Apr 2, 2026 &middot; 8 min</p>
+          <p class="lr-card-title">Metanova (SN12) : Monthly Performance Review</p>
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.5;margin-top:4px;">Score stable at 88.2. Emission share rising, miner churn declining.</p>
+          <p class="lr-card-meta"><strong>0xSammy</strong> · Apr 2, 2026 · 4 min</p>
         </div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ════════ BECOME A MEMBER ════════ -->
-<section class="contact" id="contact">
-  <div class="container contact-inner">
-    <div class="contact-left reveal">
-      <h2>Become a TAO Institute member.</h2>
-      <p>Discuss your investment needs with the team from TAO Institute.</p>
-      <ul class="checklist">
-        <li>Full SRI score breakdowns with methodology</li>
-        <li>24/7 research and IC memos on every subnet</li>
-        <li>Deregistration and risk alerts before they move price</li>
-        <li>Wallet movements and social sentiment tracking</li>
-        <li>REST API, webhooks, and data exports</li>
-        <li>Custom dashboards built for your desk</li>
-      </ul>
+<!-- ═══ NEWSLETTER ═══ -->
+<section class="newsletter-section">
+  <div class="container newsletter-section-inner">
+    <div class="newsletter-section-left">
+      <p class="newsletter-section-title">Monday morning: which subnets moved into red zone and why</p>
+      <p class="newsletter-section-desc">SRI score drops, validator exits, emission shifts, and research previews. In your inbox before markets open. Joined by 1,200+ subnet investors.</p>
     </div>
-    <div class="contact-form reveal reveal-delay-1">
-      <div class="form-group">
-        <label class="form-label">Name</label>
-        <input type="text" class="form-input" placeholder="Your name">
-      </div>
-      <div class="form-group">
-        <label class="form-label">I'm interested in</label>
-        <div class="form-checkboxes">
-          <label class="form-checkbox-label">
-            <input type="checkbox"> Free ratings access
-          </label>
-          <label class="form-checkbox-label">
-            <input type="checkbox"> Enterprise research
-          </label>
-          <label class="form-checkbox-label">
-            <input type="checkbox"> API integration &amp; alerts
-          </label>
-        </div>
-      </div>
-      <button class="btn-submit">Book a demo &rarr;</button>
+    <div class="newsletter-section-form">
+      <input type="email" placeholder="name@firm.com">
+      <button>Subscribe &#8594;</button>
     </div>
   </div>
 </section>
 
-<!-- ════════ FOOTER ════════ -->
+<!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="container footer-inner">
     <div class="footer-brand">
@@ -1159,79 +1751,61 @@
           <span class="d4"></span><span class="d5"></span><span class="d6"></span>
           <span class="d7"></span><span class="d8"></span>
         </div>
-        <div class="logo-text">
-          <span>TAO</span>
-          <span>INSTITUTE</span>
-        </div>
+        <div class="logo-text"><span>TAO</span><span>INSTITUTE</span></div>
       </a>
     </div>
     <div class="footer-cols">
       <div class="footer-col">
         <span class="footer-col-title">Platform</span>
-        <a href="/sri">View Dashboard</a>
-        <a href="/sri">SRI Index</a>
-        <a href="#contact">API &amp; Data</a>
+        <a href="/sri">Subnet Risk Index (SRI)</a>
         <a href="/methodology">Methodology</a>
+        <a href="#request">API and Data</a>
+        <a href="#request">Alerts</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Resources</span>
+        <a href="/research">Research</a>
+        <a href="/blog">Blog</a>
+        <a href="/docs">API Docs</a>
+        <a href="/newsletter">Newsletter</a>
       </div>
       <div class="footer-col">
         <span class="footer-col-title">Company</span>
-        <a href="/research">Research</a>
-        <a href="#contact">Contact</a>
-        <a href="https://x.com/taoinstitute" target="_blank" rel="noopener">X / Twitter</a>
+        <a href="#request">Contact</a>
+        <a href="/about">About</a>
+        <a href="/careers">Careers</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Legal</span>
+        <a href="/terms">Terms and Conditions</a>
+        <a href="/privacy">Privacy Notice</a>
+        <a href="/disclaimer">Disclaimer</a>
       </div>
     </div>
   </div>
   <div class="container footer-bottom">
     <span>&copy; 2026 TAO Institute</span>
-    <a href="mailto:enterprise@tao-institute.xyz">enterprise@tao-institute.xyz</a>
+    <div class="footer-social">
+      <a href="https://x.com/taoinstitute" target="_blank" rel="noopener">X / Twitter</a>
+      <a href="https://discord.gg/taoinstitute" target="_blank" rel="noopener">Discord</a>
+      <a href="mailto:enterprise@tao-institute.xyz">enterprise@tao-institute.xyz</a>
+    </div>
   </div>
 </footer>
 
 <script>
-// Draw halftone dot pattern
-(function() {
-  const canvas = document.getElementById('halftone');
-  if (!canvas) return;
-  const size = 680;
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = size * dpr;
-  canvas.height = size * dpr;
-  const ctx = canvas.getContext('2d');
-  ctx.scale(dpr, dpr);
-
-  const cx = size / 2;
-  const cy = size / 2;
-  const maxR = size / 2;
-  const spacing = 16;
-  const maxDot = 5;
-
-  for (let x = 0; x < size; x += spacing) {
-    for (let y = 0; y < size; y += spacing) {
-      const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
-      if (dist > maxR) continue;
-      const t = 1 - (dist / maxR);
-      const r = maxDot * t;
-      if (r < 0.5) continue;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fillStyle = '#fffef4';
-      ctx.fill();
-    }
-  }
-})();
-
 // Scroll-triggered entrance animations
 (function() {
-  const els = document.querySelectorAll('.reveal');
+  var els = document.querySelectorAll('.reveal');
   if (!els.length) return;
-  const io = new IntersectionObserver(function(entries) {
+  var io = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
         io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12 });
   els.forEach(function(el) { io.observe(el); });
 })();
 </script>
