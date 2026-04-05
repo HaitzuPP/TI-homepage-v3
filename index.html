@@ -11,6 +11,7 @@
 
   :root {
     --bg: #02020a;
+    --bg-alt: #080810;
     --bg-banner: #0c0c13;
     --nav-bg: #02020ad9;
     --border: #fffef429;
@@ -302,21 +303,41 @@
     .trusted-by-logos { gap: 24px; flex-wrap: wrap; }
   }
 
-  /* ── SECTION LABEL ── */
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
   .section-label {
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2.5px;
     color: var(--text-muted);
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--border);
-    display: inline-block;
   }
+  .section-header-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .section-header-link {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .section-header-link:hover { color: var(--text); }
 
   /* ── THE CHALLENGE ── */
   .challenge {
     border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
   }
   .challenge-inner {
     display: flex;
@@ -417,7 +438,7 @@
   /* ── THREE PRODUCTS ── */
   .products {
     border-bottom: 1px solid var(--border);
-    background: var(--bg-banner);
+    background: var(--bg);
   }
   .products-inner {
     display: flex;
@@ -487,58 +508,10 @@
   }
   .product-card-link:hover { color: var(--text); }
 
-  /* ── USE CASES ── */
-  .use-cases {
-    border-bottom: 1px solid var(--border);
-  }
-  .use-cases-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    padding: 72px 40px;
-  }
-  .use-cases-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    border: 1px solid var(--border);
-  }
-  @media (min-width: 768px) {
-    .use-cases-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  .use-case-card {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 28px 28px 32px;
-    border-right: 1px solid var(--border);
-  }
-  @media (max-width: 767px) {
-    .use-case-card { border-right: none; border-bottom: 1px solid var(--border); }
-  }
-  .use-case-card:last-child { border-right: none; border-bottom: none; }
-  .use-case-label {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text-muted);
-  }
-  .use-case-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.3;
-  }
-  .use-case-body {
-    font-size: 13px;
-    line-height: 1.65;
-    color: var(--text-muted);
-  }
-
   /* ── PRODUCT SCREENSHOT ── */
   .screenshot-section {
     border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
   }
   .screenshot-inner {
     display: flex;
@@ -755,148 +728,126 @@
   .sri-legend-dot.amber { background: var(--warning); }
   .sri-legend-dot.red { background: var(--negative); }
 
-  /* ── TESTIMONIALS ── */
-  .testimonials {
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-banner);
-  }
-  .testimonials-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    padding: 72px 40px;
-  }
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    border: 1px solid var(--border);
-  }
-  @media (min-width: 768px) {
-    .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  .testimonial-card {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 32px 28px;
-    border-right: 1px solid var(--border);
-  }
-  @media (max-width: 767px) {
-    .testimonial-card { border-right: none; border-bottom: 1px solid var(--border); }
-  }
-  .testimonial-card:last-child { border-right: none; border-bottom: none; }
-  .testimonial-quote {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    font-style: italic;
-  }
-  .testimonial-quote::before { content: '\201C'; }
-  .testimonial-quote::after { content: '\201D'; }
-  .testimonial-author {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    margin-top: auto;
-    padding-top: 8px;
-    border-top: 1px solid var(--border);
-  }
-  .testimonial-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .testimonial-role {
-    font-size: 11px;
-    color: var(--text-muted);
-  }
-
-  /* ── PRICING TABLE ── */
+  /* ── HOW IT WORKS ── */
   .pricing-section {
     border-bottom: 1px solid var(--border);
   }
   .pricing-inner {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 40px;
     padding: 72px 40px;
     align-items: center;
   }
-  .pricing-table {
+  .pricing-cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
     width: 100%;
     max-width: 900px;
-    border-collapse: collapse;
     border: 1px solid var(--border);
   }
-  .pricing-table th {
-    padding: 16px 20px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-    text-align: center;
-    border-bottom: 2px solid var(--border);
+  @media (min-width: 768px) {
+    .pricing-cols { grid-template-columns: 1fr 1fr; }
+  }
+  .pricing-col {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+  }
+  @media (max-width: 767px) {
+    .pricing-col { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+  .pricing-col:last-child { border-right: none; border-bottom: none; }
+  .pricing-col-header {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
     background: var(--bg-banner);
   }
-  .pricing-table th:first-child {
-    text-align: left;
-    color: var(--text-muted);
-    font-size: 10px;
+  .pricing-col-title {
+    font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
+    color: var(--text);
+    margin-bottom: 2px;
   }
-  .pricing-table td {
-    padding: 14px 20px;
+  .pricing-col-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .pricing-col-features {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .pricing-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-bottom: 1px solid var(--border);
     font-size: 13px;
     color: var(--text-secondary);
-    border-bottom: 1px solid var(--border);
+  }
+  .pricing-feature:last-child { border-bottom: none; }
+  .pricing-feature .icon-check {
+    color: var(--positive);
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+    width: 16px;
     text-align: center;
   }
-  .pricing-table td:first-child {
-    text-align: left;
-    font-weight: 600;
-    color: var(--text);
-  }
-  .pricing-table tr:last-child td { border-bottom: none; }
-  .pricing-check { color: var(--positive); font-weight: 600; }
-  .pricing-x { color: var(--text-muted); opacity: 0.4; }
-  .pricing-note { font-size: 12px; color: var(--text-muted); }
-  .pricing-highlight {
-    color: var(--positive);
-    font-weight: 600;
+  .pricing-feature .icon-x {
+    color: var(--text-muted);
+    opacity: 0.3;
     font-size: 12px;
+    flex-shrink: 0;
+    width: 16px;
+    text-align: center;
   }
-  .pricing-delay {
+  .pricing-feature .feat-label { color: var(--text-secondary); }
+  .pricing-feature .feat-label-muted { color: var(--text-muted); opacity: 0.5; }
+  .pricing-feature .feat-note {
+    font-size: 11px;
     color: var(--warning);
-    font-size: 12px;
+    margin-left: auto;
+    flex-shrink: 0;
   }
-  .pricing-ctas {
+  .pricing-col-cta {
+    padding: 20px 28px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .pricing-col-cta a {
     display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
+    gap: 8px;
+    padding: 13px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .pricing-col-cta a:hover { opacity: 0.85; }
+  .pricing-cta-primary {
+    background: var(--text);
+    color: var(--bg);
+  }
+  .pricing-cta-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
   }
 
   /* ── LATEST RESEARCH ── */
-  .latest-research { border-bottom: 1px solid var(--border); }
-  .lr-inner { padding: 80px 40px; }
-  .lr-header {
+  .latest-research { border-bottom: 1px solid var(--border); background: var(--bg); }
+  .lr-inner {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 28px;
+    flex-direction: column;
+    gap: 28px;
+    padding: 80px 40px;
   }
-  .see-all-link {
-    border-bottom: 1.5px solid var(--border);
-    padding-bottom: 1px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .see-all-link:hover { color: var(--text); }
   .lr-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -966,25 +917,13 @@
   /* ── LEADERSHIP ── */
   .leadership {
     border-bottom: 1px solid var(--border);
-    background: var(--bg-banner);
+    background: var(--bg-alt);
   }
   .leadership-inner {
     display: flex;
     flex-direction: column;
     gap: 32px;
     padding: 72px 40px;
-  }
-  .leadership-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .leadership-subtitle {
-    font-size: 13px;
-    color: var(--text-muted);
-    max-width: 440px;
   }
   .leadership-grid {
     display: grid;
@@ -1053,6 +992,7 @@
   /* ── REQUEST ACCESS ── */
   .request-access {
     border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
   }
   .request-inner {
     display: grid;
@@ -1124,24 +1064,25 @@
   }
   .form-input::placeholder { color: var(--text-muted); }
   .form-input:focus { border-color: var(--border-hover); }
-  .form-checkboxes { display: flex; flex-direction: column; gap: 0; }
-  .form-checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .form-select {
+    padding: 12px 14px;
+    background: var(--bg-banner);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%23fffef4' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
     cursor: pointer;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-    color: var(--text-secondary);
   }
-  .form-checkbox-label:last-child { border-bottom: none; }
-  .form-checkbox-label input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    accent-color: var(--positive);
-    cursor: pointer;
-  }
+  .form-select:focus { border-color: var(--border-hover); }
+  .form-select option { background: var(--bg); color: var(--text); }
   .btn-submit {
     display: inline-flex;
     align-items: center;
@@ -1303,9 +1244,8 @@
     .screenshot-main { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .sri-table { min-width: 520px; }
 
-    /* Pricing table scroll */
-    .pricing-table { min-width: 560px; }
-    .pricing-inner { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    /* Pricing cols stack on mobile */
+    .pricing-cols { grid-template-columns: 1fr; }
 
     /* SRI legend stacks vertically */
     .sri-legend { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -1399,13 +1339,19 @@
 <!-- ═══ THE CHALLENGE ═══ -->
 <section class="challenge">
   <div class="container challenge-inner">
-    <p class="section-label reveal">The investor journey</p>
+    <div class="section-header reveal">
+      <p class="section-label">The investor journey</p>
+      <div class="section-header-links">
+        <a href="/sri" class="section-header-link">Explore SRI &#8594;</a>
+        <a href="/research" class="section-header-link">Explore our research &#8594;</a>
+      </div>
+    </div>
     <div class="challenge-grid reveal reveal-d1">
       <div class="challenge-card">
         <span class="challenge-card-step">Step 01</span>
         <div class="challenge-card-icon">&#9906;</div>
         <p class="challenge-card-title">Find your hunting ground</p>
-        <p class="challenge-card-body">128 subnets are live and growing. Each represents a bet on a different AI use-case, team, and market. TAO Institute Research evaluates the market opportunity, team capability, and competitive positioning so you can identify which subnets are worth backing.</p>
+        <p class="challenge-card-body">128 subnets, each a bet on a different AI use-case, team, and market. Our research evaluates opportunity, capability, and positioning so you know which are worth backing.</p>
         <a href="/research" class="challenge-card-cta">Subscribe to Our Research &#8594;</a>
       </div>
       <div class="challenge-arrow">
@@ -1422,7 +1368,7 @@
         <span class="challenge-card-step">Step 02</span>
         <div class="challenge-card-icon">&#9888;</div>
         <p class="challenge-card-title">Protect your downside</p>
-        <p class="challenge-card-body">Once capital is deployed, risks compound. Validator concentration distorts emissions, thin liquidity traps capital, and deregistration can zero positions overnight. TAO Institute's Subnet Risk Index (SRI) scores mechanism design, economic sustainability, and security risks across every active subnet.</p>
+        <p class="challenge-card-body">Validator concentration distorts emissions, thin liquidity traps capital, deregistration zeros positions overnight. The Subnet Risk Index (SRI) scores every active subnet so you see risk before it hits.</p>
         <a href="/sri" class="challenge-card-cta">Explore the Subnet Risk Index (SRI) &#8594;</a>
       </div>
     </div>
@@ -1432,7 +1378,9 @@
 <!-- ═══ THREE PRODUCTS ═══ -->
 <section class="products">
   <div class="container products-inner">
-    <p class="section-label reveal">How we solve it</p>
+    <div class="section-header reveal">
+      <p class="section-label">How we solve it</p>
+    </div>
     <div class="products-grid reveal reveal-d1">
       <div class="product-card">
         <span class="product-card-num">01 <span class="line"></span> Subnet Risk Index (SRI)</span>
@@ -1459,7 +1407,9 @@
 <!-- ═══ PRODUCT SCREENSHOT ═══ -->
 <section class="screenshot-section">
   <div class="container screenshot-inner">
-    <p class="section-label reveal">The Subnet Risk Index (SRI), live</p>
+    <div class="section-header reveal">
+      <p class="section-label">The Subnet Risk Index (SRI), live</p>
+    </div>
     <div class="sri-layout reveal reveal-d1">
       <div class="sri-layout-left">
         <div class="screenshot-bar">
@@ -1555,85 +1505,54 @@
   </div>
 </section>
 
-<!-- ═══ PRICING ═══ -->
+<!-- ═══ HOW IT WORKS ═══ -->
 <section class="pricing-section">
   <div class="container pricing-inner">
-    <p class="section-label reveal">How it works</p>
-    <table class="pricing-table reveal reveal-d1">
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Free Account</th>
-          <th>Enterprise Member</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Subnet Risk Index (SRI)</td>
-          <td><span class="pricing-check">&#10003; Full access</span></td>
-          <td><span class="pricing-check">&#10003; Full access</span></td>
-        </tr>
-        <tr>
-          <td>Subnet Analytics</td>
-          <td><span class="pricing-check">&#10003; Included</span></td>
-          <td><span class="pricing-check">&#10003; Included</span></td>
-        </tr>
-        <tr>
-          <td>Data Dashboards</td>
-          <td><span class="pricing-check">&#10003; Included</span></td>
-          <td><span class="pricing-check">&#10003; Included</span></td>
-        </tr>
-        <tr>
-          <td>Analyst Coverage</td>
-          <td><span class="pricing-delay">Published 14 days after enterprise</span></td>
-          <td><span class="pricing-highlight">&#10003; Real-time access</span></td>
-        </tr>
-        <tr>
-          <td>Custom Dashboards &amp; Alerts</td>
-          <td><span class="pricing-x">&#10005;</span></td>
-          <td><span class="pricing-highlight">&#10003; Full access, real-time</span></td>
-        </tr>
-        <tr>
-          <td>Subnet Diligence (Tokenomics, Technical Audit)</td>
-          <td><span class="pricing-x">&#10005;</span></td>
-          <td><span class="pricing-highlight">&#10003; At request</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="pricing-ctas reveal reveal-d2">
-      <a href="#request" class="btn-primary">Request Enterprise Access &#8594;</a>
-      <a href="/register" class="btn-secondary">Create Free Account &#8594;</a>
+    <div class="section-header reveal">
+      <p class="section-label">How it works</p>
     </div>
-  </div>
-</section>
+    <div class="pricing-cols reveal reveal-d1">
 
-<!-- ═══ REQUEST ACCESS ═══ -->
-<section class="request-access" id="request">
-  <div class="container request-inner">
-    <div class="request-left reveal">
-      <h2>Request Enterprise Access</h2>
-      <p>Tell us what you're looking for.</p>
-      <ul class="checklist">
-        <li>Real-time access to TAO Institute universe of subnet research</li>
-        <li>Custom dashboards and enterprise alerts fit for your investment strategy</li>
-        <li>API access for multi-position monitoring and portfolio integration</li>
-      </ul>
-    </div>
-    <div class="request-form reveal reveal-d1">
-      <div class="form-group">
-        <label class="form-label">Full Name</label>
-        <input type="text" class="form-input" placeholder="Your name">
+      <!-- FREE -->
+      <div class="pricing-col">
+        <div class="pricing-col-header">
+          <div class="pricing-col-title">Free Account</div>
+          <div class="pricing-col-sub">Core tools, open access</div>
+        </div>
+        <div class="pricing-col-features">
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Subnet Risk Index (SRI)</span></div>
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Subnet Analytics</span></div>
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Data Dashboards</span></div>
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Analyst Coverage</span> <span class="feat-note">14-day delay</span></div>
+          <div class="pricing-feature"><span class="icon-x">&#10005;</span> <span class="feat-label-muted">Custom Dashboards &amp; Alerts</span></div>
+          <div class="pricing-feature"><span class="icon-x">&#10005;</span> <span class="feat-label-muted">Subnet Diligence</span></div>
+          <div class="pricing-feature"><span class="icon-x">&#10005;</span> <span class="feat-label-muted">API &amp; Structured Data Feeds</span></div>
+        </div>
+        <div class="pricing-col-cta">
+          <a href="/register" class="pricing-cta-secondary">Create Free Account &#8594;</a>
+        </div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Business Email</label>
-        <input type="email" class="form-input" placeholder="name@firm.com">
+
+      <!-- ENTERPRISE -->
+      <div class="pricing-col">
+        <div class="pricing-col-header">
+          <div class="pricing-col-title">Enterprise Member</div>
+          <div class="pricing-col-sub">Full platform, real-time access</div>
+        </div>
+        <div class="pricing-col-features">
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Subnet Risk Index (SRI)</span></div>
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Subnet Analytics</span></div>
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Data Dashboards</span></div>
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Analyst Coverage, real-time</span></div>
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Custom Dashboards &amp; Alerts</span></div>
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Subnet Diligence</span></div>
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">API &amp; Structured Data Feeds</span></div>
+        </div>
+        <div class="pricing-col-cta">
+          <a href="#request" class="pricing-cta-primary">Request Enterprise Access &#8594;</a>
+        </div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Organisation</label>
-        <input type="text" class="form-input" placeholder="Your organisation">
-      </div>
-      <button class="btn-submit">Request Enterprise Access &#8594;</button>
-      <p style="font-size:11px;color:var(--text-muted);margin-top:4px;">Custom pricing based on portfolio size and data requirements. We typically respond within 24 hours.</p>
+
     </div>
   </div>
 </section>
@@ -1641,9 +1560,8 @@
 <!-- ═══ LEADERSHIP ═══ -->
 <section class="leadership">
   <div class="container leadership-inner">
-    <div class="leadership-header">
-      <p class="section-label reveal">Leadership</p>
-      <p class="leadership-subtitle reveal reveal-d1">Built by researchers and engineers from the Bittensor ecosystem.</p>
+    <div class="section-header reveal">
+      <p class="section-label">Leadership</p>
     </div>
     <div class="leadership-grid reveal reveal-d1">
       <div class="leader-card">
@@ -1679,9 +1597,11 @@
 <!-- ═══ LATEST RESEARCH ═══ -->
 <section class="latest-research">
   <div class="container lr-inner">
-    <div class="lr-header reveal">
+    <div class="section-header reveal">
       <p class="section-label">Latest Research</p>
-      <a href="/research" class="see-all-link">See all &#8594;</a>
+      <div class="section-header-links">
+        <a href="/research" class="section-header-link">See all &#8594;</a>
+      </div>
     </div>
     <div class="lr-grid reveal reveal-d1">
       <a href="/research/yanez-sn54-initiation-of-coverage" class="lr-card">
@@ -1723,6 +1643,41 @@
           <p class="lr-card-meta"><strong>0xSammy</strong> · Apr 2, 2026 · 4 min</p>
         </div>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REQUEST ACCESS ═══ -->
+<section class="request-access" id="request">
+  <div class="container request-inner">
+    <div class="request-left reveal">
+      <h2>Request Enterprise Access</h2>
+      <p>Real-time research, custom dashboards, API feeds, and dedicated subnet diligence. Built for teams allocating into Bittensor.</p>
+    </div>
+    <div class="request-form reveal reveal-d1">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-input" placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Business Email</label>
+        <input type="email" class="form-input" placeholder="name@firm.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Organisation</label>
+        <input type="text" class="form-input" placeholder="Your organisation">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Interested In</label>
+        <select class="form-select">
+          <option value="" disabled selected>Select a feature</option>
+          <option value="research">Real-Time Research</option>
+          <option value="dashboards">Custom Dashboards &amp; Alerts</option>
+          <option value="api">API Access</option>
+        </select>
+      </div>
+      <button class="btn-submit">Request Enterprise Access &#8594;</button>
+      <p style="font-size:11px;color:var(--text-muted);margin-top:4px;">Custom pricing based on portfolio size and data requirements. We typically respond within 24 hours.</p>
     </div>
   </div>
 </section>
