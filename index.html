@@ -1485,25 +1485,34 @@
     line-height: 1.7;
     color: var(--text-secondary);
   }
-  .checklist { list-style: none; margin-top: 4px; }
-  .checklist li {
-    position: relative;
-    padding: 10px 0 10px 20px;
-    font-size: 13px;
-    line-height: 1.4;
-    color: var(--text-secondary);
+  .request-proof {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .request-proof-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
     border-bottom: 1px solid var(--border);
   }
-  .checklist li:last-child { border-bottom: none; }
-  .checklist li::before {
-    content: '\2713';
-    position: absolute;
-    left: 0;
-    top: 10px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--positive);
+  .request-proof-item:last-child { border-bottom: none; }
+  .request-proof-icon {
+    font-size: 14px;
+    line-height: 1.4;
+    flex-shrink: 0;
+    width: 18px;
+    text-align: center;
   }
+  .request-proof-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+  .request-proof-text strong { color: var(--text); font-weight: 600; }
   .request-form {
     display: flex;
     flex-direction: column;
@@ -1516,6 +1525,21 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .form-label .req {
+    color: var(--negative);
+    font-size: 10px;
+  }
+  .form-label .opt {
+    color: var(--text-muted);
+    font-size: 9px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    opacity: 0.6;
   }
   .form-input {
     padding: 12px 14px;
@@ -1548,23 +1572,45 @@
   }
   .form-select:focus { border-color: var(--border-hover); }
   .form-select option { background: var(--bg); color: var(--text); }
+  .form-textarea {
+    padding: 12px 14px;
+    background: var(--bg-banner);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+    min-height: 88px;
+    line-height: 1.6;
+  }
+  .form-textarea::placeholder { color: var(--text-muted); }
+  .form-textarea:focus { border-color: var(--border-hover); }
   .btn-submit {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 14px 28px;
+    padding: 16px 28px;
     background: var(--text);
     color: var(--bg);
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     border: none;
     cursor: pointer;
-    align-self: flex-start;
+    width: 100%;
     transition: opacity 0.2s;
   }
   .btn-submit:hover { opacity: 0.85; }
+  .form-reply-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+  .form-reply-note strong { color: var(--text-secondary); font-weight: 600; }
 
   /* ── NEWSLETTER ── */
   .newsletter-section {
@@ -1715,8 +1761,7 @@
     /* SRI legend stacks vertically */
     .sri-legend { flex-direction: column; align-items: flex-start; gap: 8px; }
 
-    /* Request form full width button */
-    .btn-submit { align-self: stretch; justify-content: center; }
+    /* Request form full width button (already full width, no override needed) */
 
     /* Research cards stack */
     .lr-card { border-right: none; border-bottom: 1px solid var(--border); }
@@ -2232,7 +2277,7 @@
           <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">API &amp; Structured Data Feeds</span></div>
         </div>
         <div class="pricing-col-cta">
-          <a href="#request" class="pricing-cta-primary">Request Enterprise Access &#8594;</a>
+          <a href="#request" class="pricing-cta-primary">Talk to Jack &#8594;</a>
         </div>
       </div>
 
@@ -2244,14 +2289,26 @@
 <section class="request-access" id="request">
   <div class="container request-inner">
     <div class="request-left reveal">
-      <h2>Request Enterprise Access</h2>
-      <p>Real-time research, custom dashboards, API feeds, and dedicated subnet diligence. Built for teams allocating into Bittensor.</p>
-      <ul class="checklist">
-        <li>Custom Dashboards &amp; Alerts</li>
-        <li>Subnet DD (Mech Design, Technical &amp; more)</li>
-        <li>API &amp; Structured Data Feeds</li>
-        <li>Real-Time Research Coverage</li>
-      </ul>
+      <h2>Talk to Jack</h2>
+      <p>Enterprise access is priced per fund, based on portfolio size and coverage requirements. Fill in the form and Jack will email you back within 24 hours.</p>
+      <div class="request-proof">
+        <div class="request-proof-item">
+          <span class="request-proof-icon">&#9646;</span>
+          <span class="request-proof-text"><strong>Real-time research coverage.</strong> Initiation reports and monthly updates published same day, not 14 days later.</span>
+        </div>
+        <div class="request-proof-item">
+          <span class="request-proof-icon">&#9646;</span>
+          <span class="request-proof-text"><strong>Custom alerts on your positions.</strong> Score drops, deregistration risk, and stake flows delivered by email or webhook.</span>
+        </div>
+        <div class="request-proof-item">
+          <span class="request-proof-icon">&#9646;</span>
+          <span class="request-proof-text"><strong>Dedicated subnet diligence.</strong> Full mechanism design, team, and competitive analysis on any subnet you need to underwrite.</span>
+        </div>
+        <div class="request-proof-item">
+          <span class="request-proof-icon">&#9646;</span>
+          <span class="request-proof-text"><strong>API and structured data feeds.</strong> Direct access to SRI scores and risk metrics for systematic strategies.</span>
+        </div>
+      </div>
       <div class="contact-card">
         <div class="contact-card-avatar">
           <img src="logos/haitzu.jpg" alt="Jack Ai-Leung" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -2259,7 +2316,7 @@
         </div>
         <div class="contact-card-info">
           <p class="contact-card-name">Jack Ai-Leung</p>
-          <p class="contact-card-title">Co-Founder, TAO Institute &mdash; Custom pricing. We respond within 24 hours.</p>
+          <p class="contact-card-title">Co-Founder, TAO Institute. Prefer to reach out directly?</p>
           <div class="contact-card-links">
             <a href="mailto:jack.leung@taoinstitute.io" class="contact-card-link">
               <svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm0 0l8 8 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2267,7 +2324,7 @@
             </a>
             <a href="https://t.me/haitzu" target="_blank" rel="noopener" class="contact-card-link">
               <svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M21 5L2 12.5l7 1M21 5l-4 14-8-5.5M21 5L9 13.5m0 0V19l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              @haitzu
+              @haitzu on Telegram
             </a>
           </div>
         </div>
@@ -2275,27 +2332,23 @@
     </div>
     <div class="request-form reveal reveal-d1">
       <div class="form-group">
-        <label class="form-label">Full Name</label>
-        <input type="text" class="form-input" placeholder="Your name">
+        <label class="form-label">Full Name <span class="req">*</span></label>
+        <input type="text" class="form-input" placeholder="Your name" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Business Email</label>
-        <input type="email" class="form-input" placeholder="name@firm.com">
+        <label class="form-label">Business Email <span class="req">*</span></label>
+        <input type="email" class="form-input" placeholder="name@firm.com" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Organisation</label>
-        <input type="text" class="form-input" placeholder="Your organisation">
+        <label class="form-label">Fund / Organisation <span class="req">*</span></label>
+        <input type="text" class="form-input" placeholder="Your fund or firm" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Interested In</label>
-        <select class="form-select">
-          <option value="" disabled selected>Select a product</option>
-          <option value="research">Real-Time Research</option>
-          <option value="dashboards">Custom Dashboards &amp; Alerts</option>
-          <option value="api">API Access</option>
-        </select>
+        <label class="form-label">Anything specific you would like to cover? <span class="opt">Optional</span></label>
+        <textarea class="form-textarea" placeholder="e.g. coverage on specific subnets, API integration, custom alert setup..."></textarea>
       </div>
-      <button class="btn-submit">Request Enterprise Access &#8594;</button>
+      <button class="btn-submit">Email Jack &#8594;</button>
+      <p class="form-reply-note">Jack reads every message and replies within <strong>24 hours</strong>.</p>
     </div>
   </div>
 </section>
