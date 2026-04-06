@@ -1395,54 +1395,67 @@
   }
 
   /* ── CONTACT CARD ── */
-  .contact-card {
+  /* ── JACK PROFILE (Request section) ── */
+  .jack-profile {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 16px 20px;
-    border: 1px solid var(--border);
-    background: var(--bg-banner);
-    margin-top: 8px;
+    gap: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
   }
-  .contact-card-avatar {
-    width: 52px;
-    height: 52px;
+  .jack-avatar {
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid var(--border);
     flex-shrink: 0;
     position: relative;
   }
-  .contact-card-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .contact-card-avatar-fallback {
+  .jack-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .jack-avatar-fallback {
     display: none;
     width: 100%;
     height: 100%;
     align-items: center;
     justify-content: center;
     background: rgba(255,254,244,0.06);
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 700;
     color: var(--text-muted);
   }
-  .contact-card-info { display: flex; flex-direction: column; gap: 3px; }
-  .contact-card-name {
-    font-size: 14px;
+  .jack-info { display: flex; flex-direction: column; gap: 4px; }
+  .jack-name {
+    font-size: 18px;
     font-weight: 700;
     color: var(--text);
     line-height: 1.2;
   }
-  .contact-card-title {
-    font-size: 11px;
+  .jack-role {
+    font-size: 12px;
     color: var(--text-muted);
     letter-spacing: 0.3px;
   }
-  .contact-card-links {
+  .jack-contacts {
     display: flex;
-    flex-direction: column;
-    gap: 3px;
-    margin-top: 5px;
+    gap: 16px;
+    margin-top: 6px;
+    flex-wrap: wrap;
   }
+  .jack-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .jack-contact-link:hover { color: var(--text); }
+
+  /* kept for other potential uses */
   .contact-card-link {
     display: inline-flex;
     align-items: center;
@@ -1489,27 +1502,26 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    border: 1px solid var(--border);
-    margin-top: 4px;
   }
   .request-proof-item {
     display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 14px 18px;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
     border-bottom: 1px solid var(--border);
   }
   .request-proof-item:last-child { border-bottom: none; }
-  .request-proof-icon {
-    font-size: 14px;
-    line-height: 1.4;
+  .request-proof-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--positive);
     flex-shrink: 0;
-    width: 18px;
-    text-align: center;
+    opacity: 0.7;
   }
   .request-proof-text {
     font-size: 13px;
-    line-height: 1.5;
+    line-height: 1.4;
     color: var(--text-secondary);
   }
   .request-proof-text strong { color: var(--text); font-weight: 600; }
@@ -2289,44 +2301,44 @@
 <section class="request-access" id="request">
   <div class="container request-inner">
     <div class="request-left reveal">
-      <h2>Talk to Jack</h2>
-      <p>Enterprise access is priced per fund, based on portfolio size and coverage requirements. Fill in the form and Jack will email you back within 24 hours.</p>
-      <div class="request-proof">
-        <div class="request-proof-item">
-          <span class="request-proof-icon">&#9646;</span>
-          <span class="request-proof-text"><strong>Real-time research coverage.</strong> Initiation reports and monthly updates published same day, not 14 days later.</span>
-        </div>
-        <div class="request-proof-item">
-          <span class="request-proof-icon">&#9646;</span>
-          <span class="request-proof-text"><strong>Custom alerts on your positions.</strong> Score drops, deregistration risk, and stake flows delivered by email or webhook.</span>
-        </div>
-        <div class="request-proof-item">
-          <span class="request-proof-icon">&#9646;</span>
-          <span class="request-proof-text"><strong>Dedicated subnet diligence.</strong> Full mechanism design, team, and competitive analysis on any subnet you need to underwrite.</span>
-        </div>
-        <div class="request-proof-item">
-          <span class="request-proof-icon">&#9646;</span>
-          <span class="request-proof-text"><strong>API and structured data feeds.</strong> Direct access to SRI scores and risk metrics for systematic strategies.</span>
-        </div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-card-avatar">
+      <div class="jack-profile">
+        <div class="jack-avatar">
           <img src="logos/haitzu.jpg" alt="Jack Ai-Leung" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="contact-card-avatar-fallback">J</div>
+          <div class="jack-avatar-fallback">J</div>
         </div>
-        <div class="contact-card-info">
-          <p class="contact-card-name">Jack Ai-Leung</p>
-          <p class="contact-card-title">Co-Founder, TAO Institute. Prefer to reach out directly?</p>
-          <div class="contact-card-links">
-            <a href="mailto:jack.leung@taoinstitute.io" class="contact-card-link">
-              <svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm0 0l8 8 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="jack-info">
+          <p class="jack-name">Jack Ai-Leung</p>
+          <p class="jack-role">Co-Founder, TAO Institute</p>
+          <div class="jack-contacts">
+            <a href="mailto:jack.leung@taoinstitute.io" class="jack-contact-link">
+              <svg width="11" height="11" fill="none" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm0 0l8 8 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               jack.leung@taoinstitute.io
             </a>
-            <a href="https://t.me/haitzu" target="_blank" rel="noopener" class="contact-card-link">
-              <svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M21 5L2 12.5l7 1M21 5l-4 14-8-5.5M21 5L9 13.5m0 0V19l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <a href="https://t.me/haitzu" target="_blank" rel="noopener" class="jack-contact-link">
+              <svg width="11" height="11" fill="none" viewBox="0 0 24 24"><path d="M21 5L2 12.5l7 1M21 5l-4 14-8-5.5M21 5L9 13.5m0 0V19l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               @haitzu on Telegram
             </a>
           </div>
+        </div>
+      </div>
+      <h2>Talk to Jack</h2>
+      <p>Priced per fund. Jack replies within 24 hours.</p>
+      <div class="request-proof">
+        <div class="request-proof-item">
+          <span class="request-proof-dot"></span>
+          <span class="request-proof-text"><strong>Research published same day,</strong> not 14 days later</span>
+        </div>
+        <div class="request-proof-item">
+          <span class="request-proof-dot"></span>
+          <span class="request-proof-text"><strong>Custom alerts</strong> on score drops, delistings, and stake flows</span>
+        </div>
+        <div class="request-proof-item">
+          <span class="request-proof-dot"></span>
+          <span class="request-proof-text"><strong>Dedicated diligence</strong> on any subnet you need to underwrite</span>
+        </div>
+        <div class="request-proof-item">
+          <span class="request-proof-dot"></span>
+          <span class="request-proof-text"><strong>API access</strong> to SRI scores and risk metrics</span>
         </div>
       </div>
     </div>
