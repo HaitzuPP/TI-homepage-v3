@@ -1399,10 +1399,10 @@
   .jack-profile {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 24px;
+    gap: 16px;
+    padding: 16px 18px;
+    background: var(--bg-banner);
+    border: 1px solid var(--border);
   }
   .jack-avatar {
     width: 72px;
@@ -1495,8 +1495,17 @@
   }
   .request-left > p {
     font-size: 15px;
-    line-height: 1.7;
+    line-height: 1.6;
     color: var(--text-secondary);
+  }
+  .form-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
   }
   .request-proof {
     display: flex;
@@ -2301,6 +2310,8 @@
 <section class="request-access" id="request">
   <div class="container request-inner">
     <div class="request-left reveal">
+      <h2>Talk to Jack</h2>
+      <p>Bespoke coverage across all 128 subnets. Priced per fund, not per seat.</p>
       <div class="jack-profile">
         <div class="jack-avatar">
           <img src="logos/haitzu.jpg" alt="Jack Ai-Leung" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -2321,28 +2332,27 @@
           </div>
         </div>
       </div>
-      <h2>Talk to Jack</h2>
-      <p>Priced per fund. Jack replies within 24 hours.</p>
       <div class="request-proof">
         <div class="request-proof-item">
           <span class="request-proof-dot"></span>
-          <span class="request-proof-text"><strong>Research published same day,</strong> not 14 days later</span>
+          <span class="request-proof-text"><strong>Same-day research briefs</strong> on any subnet you're evaluating, not 14 days after the move</span>
         </div>
         <div class="request-proof-item">
           <span class="request-proof-dot"></span>
-          <span class="request-proof-text"><strong>Custom alerts</strong> on score drops, delistings, and stake flows</span>
+          <span class="request-proof-text"><strong>Automated downside alerts</strong> on score drops, validator exits, and forced delistings</span>
         </div>
         <div class="request-proof-item">
           <span class="request-proof-dot"></span>
-          <span class="request-proof-text"><strong>Dedicated diligence</strong> on any subnet you need to underwrite</span>
+          <span class="request-proof-text"><strong>Dedicated underwriting support</strong> for new and existing Bittensor positions</span>
         </div>
         <div class="request-proof-item">
           <span class="request-proof-dot"></span>
-          <span class="request-proof-text"><strong>API access</strong> to SRI scores and risk metrics</span>
+          <span class="request-proof-text"><strong>Structured data feeds and API access</strong> for quant and systematic allocators</span>
         </div>
       </div>
     </div>
     <div class="request-form reveal reveal-d1">
+      <p class="form-section-label">Request Institutional Access</p>
       <div class="form-group">
         <label class="form-label">Full Name <span class="req">*</span></label>
         <input type="text" class="form-input" placeholder="Your name" required>
