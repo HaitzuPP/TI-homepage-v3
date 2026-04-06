@@ -1632,6 +1632,19 @@
     line-height: 1.5;
   }
   .form-reply-note strong { color: var(--text-secondary); font-weight: 600; }
+  .form-team-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+  .form-team-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .form-team-link:hover { color: var(--text); border-color: var(--border-hover); }
 
   /* ── NEWSLETTER ── */
   .newsletter-section {
@@ -2298,7 +2311,7 @@
           <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">API &amp; Structured Data Feeds</span></div>
         </div>
         <div class="pricing-col-cta">
-          <a href="#request" class="pricing-cta-primary">Talk to Jack &#8594;</a>
+          <a href="#request" class="pricing-cta-primary">Request Access &#8594;</a>
         </div>
       </div>
 
@@ -2310,7 +2323,7 @@
 <section class="request-access" id="request">
   <div class="container request-inner">
     <div class="request-left reveal">
-      <h2>Talk to Jack</h2>
+      <h2>Request Access</h2>
       <p>Bespoke coverage across all 128 subnets. Priced per fund, not per seat.</p>
       <div class="jack-profile">
         <div class="jack-avatar">
@@ -2371,6 +2384,7 @@
       </div>
       <button class="btn-submit">Email Jack &#8594;</button>
       <p class="form-reply-note">Jack reads every message and replies within <strong>24 hours</strong>.</p>
+      <p class="form-team-note">Prefer to speak with the team? <a href="mailto:team@taoinstitute.io" class="form-team-link">team@taoinstitute.io</a></p>
     </div>
   </div>
 </section>
