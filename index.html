@@ -121,6 +121,25 @@
     letter-spacing: 2.5px;
     color: var(--text);
   }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex: 1;
+    justify-content: center;
+  }
+  .header-nav-link {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .header-nav-link:hover { color: var(--text); }
+  @media (max-width: 767px) { .header-nav { display: none; } }
+
   .btn-dashboard {
     display: inline-flex;
     align-items: center;
@@ -144,23 +163,55 @@
     border-bottom: 1px solid var(--border);
     position: relative;
     overflow: hidden;
-    background:
-      radial-gradient(circle at 100% 0%, rgba(90,122,255,0.08), transparent 32%),
-      radial-gradient(circle at 0% 0%, rgba(64,192,87,0.06), transparent 28%),
-      var(--bg);
+    background: var(--bg);
+  }
+  #hero-sphere {
+    position: absolute;
+    top: 50%;
+    right: -18%;
+    transform: translateY(-50%);
+    width: min(820px, 72vw);
+    height: min(820px, 72vw);
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.9;
+    /* Fade the left edge of the sphere so it never bleeds into copy */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28%);
+    mask-image: linear-gradient(to right, transparent 0%, black 28%);
+  }
+  @media (max-width: 1199px) {
+    #hero-sphere {
+      right: -22%;
+      width: min(640px, 70vw);
+      height: min(640px, 70vw);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%);
+      mask-image: linear-gradient(to right, transparent 0%, black 22%);
+    }
+  }
+  @media (max-width: 767px) {
+    #hero-sphere {
+      right: -25%;
+      top: 35%;
+      width: min(480px, 100vw);
+      height: min(480px, 100vw);
+      opacity: 0.35;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+      mask-image: linear-gradient(to right, transparent 0%, black 30%);
+    }
   }
   .hero-inner {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 62vh;
+    min-height: 100vh;       /* base fallback */
+    min-height: 100svh;      /* stable viewport height — ignores mobile browser chrome */
     padding-top: 80px;
     padding-bottom: 80px;
     gap: 40px;
     overflow: hidden;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1200px) {
     .hero-inner {
       display: grid;
       grid-template-columns: 1fr 380px;
@@ -216,54 +267,17 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 0;
+    padding: 14px 20px;
     background: transparent;
-    color: var(--text-muted);
-    font-size: 12px;
+    color: var(--text-secondary);
+    font-size: 13px;
     font-weight: 500;
     text-decoration: none;
-    border: none;
-    transition: color 0.2s;
-  }
-  .btn-secondary:hover { color: var(--text); }
-
-  /* ── HERO METRICS ── */
-  .hero-metrics {
-    display: flex;
-    gap: 0;
     border: 1px solid var(--border);
-    margin-top: 8px;
+    transition: color 0.2s, border-color 0.2s;
   }
-  .hero-metric {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 14px 20px;
-    border-right: 1px solid var(--border);
-    flex: 1;
-    min-width: 0;
-  }
-  .hero-metric:last-child { border-right: none; }
-  .hero-metric-value {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: var(--text);
-    line-height: 1.1;
-  }
-  .hero-metric-label {
-    font-size: 9px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--text-muted);
-  }
-  @media (max-width: 767px) {
-    .hero-metrics { flex-wrap: nowrap; }
-    .hero-metric { flex: 1; padding: 12px 14px; }
-    .hero-metric-value { font-size: 16px; }
-    .hero-metric-label { font-size: 8px; letter-spacing: 1px; }
-  }
+  .btn-secondary:hover { color: var(--text); border-color: var(--border-hover); }
+
 
   /* ── TRUSTED BY ── */
   .trusted-by {
@@ -293,8 +307,8 @@
     align-items: center;
     white-space: nowrap;
   }
-  .trusted-by-item img { height: 20px; width: auto; opacity: 0.4; flex-shrink: 0; }
-  .trusted-by-item .tb-text-logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; opacity: 0.4; }
+  .trusted-by-item img { height: 20px; width: auto; opacity: 0.7; flex-shrink: 0; }
+  .trusted-by-item .tb-text-logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; opacity: 0.7; }
   .trusted-by-item .tb-text-logo .tao-purple { color: var(--text); }
   .trusted-by-item .tb-text-logo .tao-grey { color: var(--text); }
   @media (max-width: 767px) {
@@ -313,11 +327,11 @@
     border-bottom: 1px solid var(--border);
   }
   .section-label {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2.5px;
-    color: var(--text-muted);
+    color: var(--text-secondary);
   }
   .section-header-links {
     display: flex;
@@ -464,7 +478,7 @@
     flex-direction: column;
     align-items: center;
     gap: 28px;
-    padding: 72px 40px;
+    padding: 80px 40px;
   }
   .products-grid {
     display: grid;
@@ -544,67 +558,147 @@
   }
   .product-card-link:hover { color: var(--text); }
 
-  /* ── PRODUCT VISUAL: SRI SCORES ── */
-  .pcv-score-buckets {
+  /* ── PRODUCT VISUAL: SRI LEADERBOARD ── */
+  .pcv-sri-board {
     display: flex;
-    gap: 20px;
-    margin-bottom: 14px;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
   }
-  .pcv-bucket { display: flex; flex-direction: column; gap: 3px; }
-  .pcv-bucket-val {
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -1.5px;
+  .pcv-sri-board-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-banner);
+    flex-shrink: 0;
   }
-  .pcv-bucket-val--g { color: var(--positive); }
-  .pcv-bucket-val--a { color: var(--warning); }
-  .pcv-bucket-val--r { color: var(--negative); }
-  .pcv-bucket-lbl {
+  .pcv-sri-board-label {
     font-size: 9px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--text-muted);
   }
-  .pcv-mini-table { width: 100%; border-collapse: collapse; }
-  .pcv-mini-table td {
-    padding: 5px 8px;
-    font-size: 10px;
-    border-top: 1px solid var(--border);
-    color: var(--text-secondary);
-  }
-  .pcv-mini-table td:first-child { color: var(--text); font-weight: 600; }
-  .pcv-mini-table td:last-child { text-align: right; }
-  .pcv-timestamp {
+  .pcv-live-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     font-size: 9px;
-    color: var(--text-muted);
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--positive);
+    letter-spacing: 1px;
     text-transform: uppercase;
   }
+  .pcv-live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--positive);
+    animation: pulse-green 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse-green {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(64,192,87,0.5); }
+    50%       { opacity: 0.7; box-shadow: 0 0 0 4px rgba(64,192,87,0); }
+  }
+  .pcv-sri-row-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--border);
+    flex: 1;
+    min-height: 0;
+  }
+  .pcv-sri-row-item:last-child { border-bottom: none; }
+  .pcv-sri-rank {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text-muted);
+    width: 20px;
+    flex-shrink: 0;
+  }
+  .pcv-sri-name {
+    flex: 1;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .pcv-sri-score {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    width: 36px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .pcv-sri-delta {
+    font-size: 9px;
+    font-weight: 700;
+    width: 36px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .pcv-sri-delta--up   { color: var(--positive); }
+  .pcv-sri-delta--dn   { color: var(--negative); }
+  .pcv-sri-delta--flat { color: var(--text-muted); }
+  .pcv-sri-badge-pill {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    width: 42px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+  .pcv-sri-badge-pill--g { color: var(--positive); border: 1px solid rgba(64,192,87,0.25); background: rgba(64,192,87,0.08); }
+  .pcv-sri-badge-pill--a { color: var(--warning);  border: 1px solid rgba(255,146,43,0.25); background: rgba(255,146,43,0.08); }
+  .pcv-sri-badge-pill--r { color: var(--negative); border: 1px solid rgba(240,62,62,0.25);  background: rgba(240,62,62,0.08); }
 
   /* ── PRODUCT VISUAL: ALERTS ── */
-  .pcv-alert-list { display: flex; flex-direction: column; width: 100%; }
+  .pcv-alert-list { display: flex; flex-direction: column; width: 100%; flex: 1; }
   .pcv-alert-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 9px 0;
+    gap: 9px;
+    padding: 0 18px;
     border-bottom: 1px solid var(--border);
+    border-left: 2px solid transparent;
+    flex: 1;
+    min-height: 0;
   }
-  .pcv-alert-row:first-child { border-top: 1px solid var(--border); }
-  .pcv-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
+  .pcv-alert-row:last-child { border-bottom: none; }
+  .pcv-alert-row--r { border-left-color: var(--negative); }
+  .pcv-alert-row--g { border-left-color: var(--positive); }
+  .pcv-alert-row--a { border-left-color: var(--warning); }
+  .pcv-alert-type {
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+    width: 68px;
     flex-shrink: 0;
   }
-  .pcv-dot--r { background: var(--negative); box-shadow: 0 0 6px rgba(240,62,62,0.5); }
-  .pcv-dot--a { background: var(--warning); box-shadow: 0 0 6px rgba(255,146,43,0.4); }
-  .pcv-dot--g { background: var(--positive); box-shadow: 0 0 6px rgba(64,192,87,0.4); }
-  .pcv-alert-text { flex: 1; font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
-  .pcv-alert-text strong { color: var(--text); font-weight: 600; }
-  .pcv-alert-time { font-size: 10px; color: var(--text-muted); white-space: nowrap; }
+  .pcv-alert-type--r { color: var(--negative); }
+  .pcv-alert-type--g { color: var(--positive); }
+  .pcv-alert-type--a { color: var(--warning); }
+  .pcv-alert-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    flex: 1;
+    min-width: 0;
+  }
+  .pcv-alert-subject { font-size: 11px; font-weight: 600; color: var(--text); }
+  .pcv-alert-detail  { font-size: 9px; color: var(--text-muted); line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pcv-alert-time { font-size: 9px; color: var(--text-muted); white-space: nowrap; flex-shrink: 0; }
 
   /* ── PRODUCT VISUAL: RESEARCH MOCKUP ── */
   .pcv-research {
@@ -750,6 +844,74 @@
   .pcv-sri-row-k { font-size: 8px; color: var(--text-muted); }
   .pcv-sri-row-v { font-size: 8px; font-weight: 600; color: var(--text); }
 
+  /* ── PRODUCT VISUAL: RESEARCH STACK ── */
+  .pcv-rstack {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+  }
+  .pcv-ritem {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: background 0.15s;
+    flex: 1;
+    min-height: 0;
+  }
+  .pcv-ritem:last-child { border-bottom: none; }
+  .pcv-ritem--active { background: rgba(255,254,244,0.04); }
+  .pcv-ritem:hover { background: rgba(255,254,244,0.05); }
+  .pcv-ritem-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .pcv-ritem-type {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .pcv-ritem-type--thesis {
+    background: rgba(90,122,255,0.1);
+    color: rgba(140,160,255,0.9);
+    border: 1px solid rgba(90,122,255,0.2);
+  }
+  .pcv-ritem-type--update {
+    background: rgba(255,146,43,0.08);
+    color: rgba(255,175,100,0.9);
+    border: 1px solid rgba(255,146,43,0.2);
+  }
+  .pcv-ritem-sri {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .pcv-ritem-sri--green { color: var(--positive); }
+  .pcv-ritem-sri--amber { color: var(--warning); }
+  .pcv-ritem-sri--red { color: var(--negative); }
+  .pcv-ritem-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .pcv-ritem-meta {
+    font-size: 9px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
   /* ── PRODUCT SCREENSHOT ── */
   .screenshot-section {
     border-bottom: 1px solid var(--border);
@@ -759,7 +921,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding: 72px 40px;
+    padding: 80px 40px;
     align-items: center;
   }
   .sri-layout {
@@ -979,7 +1141,7 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    padding: 72px 40px;
+    padding: 80px 40px;
     align-items: center;
   }
   .pricing-cols {
@@ -1166,7 +1328,7 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
-    padding: 72px 40px;
+    padding: 80px 40px;
   }
   .leadership-grid {
     display: grid;
@@ -1413,7 +1575,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 32px;
-    padding: 56px 40px;
+    padding: 80px 40px;
     flex-wrap: wrap;
   }
   .newsletter-section-left {
@@ -1422,7 +1584,7 @@
     gap: 6px;
   }
   .newsletter-section-title {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 700;
     color: var(--text);
     line-height: 1.3;
@@ -1569,10 +1731,12 @@
   }
 
   /* Small phones */
+  @media (max-width: 480px) {
+    .footer-cols { grid-template-columns: 1fr; gap: 24px; }
+  }
+
   @media (max-width: 400px) {
     .hero h1 { letter-spacing: -1.5px; }
-    .hero-metric { padding: 10px 12px; }
-    .hero-metric-value { font-size: 16px; }
     .top-banner { font-size: 11px; padding: 8px 12px; }
     .btn-dashboard { padding: 8px 14px; font-size: 11px; letter-spacing: 1px; }
   }
@@ -1582,7 +1746,7 @@
 
 <!-- ═══ TOP BANNER ═══ -->
 <div class="top-banner">
-  dTAO is live. 128 subnets now have independent token markets. Know which ones are worth your capital. <a href="/research">Start here &#8594;</a>
+  dTAO is live. 128 independent token markets are now tradeable. <a href="/research">See which subnets justify capital &#8594;</a>
 </div>
 
 <!-- ═══ HEADER ═══ -->
@@ -1596,33 +1760,25 @@
       </div>
       <div class="logo-text"><span>TAO</span><span>INSTITUTE</span></div>
     </a>
+    <nav class="header-nav">
+      <a href="/sri" class="header-nav-link">SRI</a>
+      <a href="/research" class="header-nav-link">Research</a>
+      <a href="https://app.tao-institute.xyz" class="header-nav-link">Dashboard</a>
+    </nav>
     <a href="/research" class="btn-dashboard">VIEW RESEARCH &#8594;</a>
   </div>
 </header>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
+  <canvas id="hero-sphere" aria-hidden="true"></canvas>
   <div class="container hero-inner">
     <h1 class="reveal">Navigate the Bittensor Economy with Institutional Research and Analytics</h1>
     <div class="hero-right reveal reveal-d1">
-      <p>128 independent subnet teams. Identify and diligence which Bittensor subnets are worth your capital.</p>
+      <p>TAO Institute risk-scores all 128 subnets hourly, publishes independent research, and alerts you to material changes before they move price. Institutional grade diligence without the diligence overhead.</p>
       <div class="hero-ctas">
         <a href="#request" class="btn-primary">Request Enterprise Access &#8594;</a>
         <a href="/research" class="btn-secondary">Read latest research &#8594;</a>
-      </div>
-      <div class="hero-metrics">
-        <div class="hero-metric">
-          <span class="hero-metric-value">128</span>
-          <span class="hero-metric-label">Subnets Scored</span>
-        </div>
-        <div class="hero-metric">
-          <span class="hero-metric-value">18</span>
-          <span class="hero-metric-label">Scored Green</span>
-        </div>
-        <div class="hero-metric">
-          <span class="hero-metric-value">1hr</span>
-          <span class="hero-metric-label">Refresh Rate</span>
-        </div>
       </div>
     </div>
   </div>
@@ -1644,14 +1800,14 @@
 <section class="challenge">
   <div class="container challenge-inner">
     <div class="section-header reveal">
-      <p class="section-label">THE INVESTOR JOURNEY</p>
+      <p class="section-label">HOW IT WORKS</p>
     </div>
     <div class="challenge-grid reveal reveal-d1">
       <div class="challenge-card challenge-card--s1">
         <span class="challenge-card-ghost">01</span>
         <span class="challenge-card-step">Step 01</span>
         <p class="challenge-card-title">Build Your Universe</p>
-        <p class="challenge-card-body">Most subnets are not investable. The Subnet Risk Index (SRI) scores all 128 across subnet health — emission viability, liquidity, and governance — to screen for your hunting ground.</p>
+        <p class="challenge-card-body">Most subnets are not investable. The SRI scores all 128 hourly across emission viability, liquidity, and validator health. Green means deployable. Red means stay out.</p>
         <a href="/sri" class="challenge-card-cta">Explore the SRI &#8594;</a>
       </div>
       <div class="challenge-arrow">
@@ -1668,7 +1824,7 @@
         <span class="challenge-card-ghost">02</span>
         <span class="challenge-card-step">Step 02</span>
         <p class="challenge-card-title">Develop Conviction</p>
-        <p class="challenge-card-body">Leverage TAO Institute's research to further diligence each subnet. Every report covers the market being targeted, the team's execution track record, and competitive positioning. You leave with a view, not a spreadsheet.</p>
+        <p class="challenge-card-body">Each report covers the target market, team execution track record, mechanism design, and competitive positioning. You get a view, not a spreadsheet.</p>
         <a href="/research" class="challenge-card-cta">Read Our Research &#8594;</a>
       </div>
       <div class="challenge-arrow">
@@ -1685,7 +1841,7 @@
         <span class="challenge-card-ghost">03</span>
         <span class="challenge-card-step">Step 03</span>
         <p class="challenge-card-title">Stay Ahead</p>
-        <p class="challenge-card-body">New subnets launch, products gain traction, transactions are executed. Our alert system flags material changes to your held subnets in real time, so your edge is not eroded while you are looking elsewhere.</p>
+        <p class="challenge-card-body">Score drops, deregistration risk, stake shifts, and large TAO flows — flagged in real time. Know within hours when any held position enters a risk zone.</p>
         <a href="#request" class="challenge-card-cta">Set Up Alerts &#8594;</a>
       </div>
     </div>
@@ -1696,33 +1852,54 @@
 <section class="products">
   <div class="container products-inner">
     <div class="section-header reveal">
-      <p class="section-label">HOW WE SOLVE IT</p>
+      <p class="section-label">THREE TOOLS</p>
     </div>
     <div class="products-grid reveal reveal-d1">
 
       <!-- CARD 01: SRI -->
       <div class="product-card">
-        <div class="product-card-visual">
-          <div class="pcv-score-buckets">
-            <div class="pcv-bucket">
-              <span class="pcv-bucket-val pcv-bucket-val--g">18</span>
-              <span class="pcv-bucket-lbl">Green</span>
+        <div class="product-card-visual" style="padding:0; justify-content:flex-start;">
+          <div class="pcv-sri-board">
+            <div class="pcv-sri-board-header">
+              <span class="pcv-sri-board-label">Top Subnets by SRI</span>
+              <span class="pcv-live-badge"><span class="pcv-live-dot"></span>Live</span>
             </div>
-            <div class="pcv-bucket">
-              <span class="pcv-bucket-val pcv-bucket-val--a">74</span>
-              <span class="pcv-bucket-lbl">Amber</span>
+            <div class="pcv-sri-row-item">
+              <span class="pcv-sri-rank">#1</span>
+              <span class="pcv-sri-name">Targon (SN4)</span>
+              <span class="pcv-sri-score">95.0</span>
+              <span class="pcv-sri-delta pcv-sri-delta--up">+2.1</span>
+              <span class="pcv-sri-badge-pill pcv-sri-badge-pill--g">GREEN</span>
             </div>
-            <div class="pcv-bucket">
-              <span class="pcv-bucket-val pcv-bucket-val--r">36</span>
-              <span class="pcv-bucket-lbl">Red</span>
+            <div class="pcv-sri-row-item">
+              <span class="pcv-sri-rank">#2</span>
+              <span class="pcv-sri-name">basilica (SN39)</span>
+              <span class="pcv-sri-score">90.8</span>
+              <span class="pcv-sri-delta pcv-sri-delta--up">+0.4</span>
+              <span class="pcv-sri-badge-pill pcv-sri-badge-pill--g">GREEN</span>
+            </div>
+            <div class="pcv-sri-row-item">
+              <span class="pcv-sri-rank">#3</span>
+              <span class="pcv-sri-name">Gradients (SN56)</span>
+              <span class="pcv-sri-score">90.4</span>
+              <span class="pcv-sri-delta pcv-sri-delta--flat">0.0</span>
+              <span class="pcv-sri-badge-pill pcv-sri-badge-pill--g">GREEN</span>
+            </div>
+            <div class="pcv-sri-row-item">
+              <span class="pcv-sri-rank">#4</span>
+              <span class="pcv-sri-name">Bitcast (SN93)</span>
+              <span class="pcv-sri-score">85.4</span>
+              <span class="pcv-sri-delta pcv-sri-delta--dn">-1.2</span>
+              <span class="pcv-sri-badge-pill pcv-sri-badge-pill--g">GREEN</span>
+            </div>
+            <div class="pcv-sri-row-item">
+              <span class="pcv-sri-rank">#5</span>
+              <span class="pcv-sri-name">Omega (SN24)</span>
+              <span class="pcv-sri-score">62.1</span>
+              <span class="pcv-sri-delta pcv-sri-delta--dn">-4.7</span>
+              <span class="pcv-sri-badge-pill pcv-sri-badge-pill--a">AMBER</span>
             </div>
           </div>
-          <div class="pcv-timestamp">Updated 4m ago &nbsp;&bull;&nbsp; 128 subnets scored</div>
-          <table class="pcv-mini-table">
-            <tr><td>SN44 &mdash; Score Vision</td><td>82.4</td><td><span style="color:var(--positive);font-size:9px;font-weight:700;">GREEN</span></td></tr>
-            <tr><td>SN19 &mdash; Nineteen</td><td>61.1</td><td><span style="color:var(--warning);font-size:9px;font-weight:700;">AMBER</span></td></tr>
-            <tr><td>SN27 &mdash; Compute</td><td>38.7</td><td><span style="color:var(--negative);font-size:9px;font-weight:700;">RED</span></td></tr>
-          </table>
         </div>
         <div class="product-card-body">
           <span class="product-card-num">01 <span class="line"></span> Subnet Risk Index (SRI)</span>
@@ -1734,26 +1911,38 @@
 
       <!-- CARD 02: ALERTS -->
       <div class="product-card">
-        <div class="product-card-visual" style="justify-content: center;">
+        <div class="product-card-visual" style="padding:0; justify-content:flex-start;">
           <div class="pcv-alert-list">
-            <div class="pcv-alert-row">
-              <span class="pcv-dot pcv-dot--r"></span>
-              <span class="pcv-alert-text"><strong>SN27</strong> Deregistration risk elevated &mdash; pruning buffer at +3</span>
+            <div class="pcv-alert-row pcv-alert-row--r">
+              <span class="pcv-alert-type pcv-alert-type--r">Delist Risk</span>
+              <div class="pcv-alert-body">
+                <span class="pcv-alert-subject">SN27 Compute</span>
+                <span class="pcv-alert-detail">Pruning buffer at +3. Review position.</span>
+              </div>
               <span class="pcv-alert-time">2m ago</span>
             </div>
-            <div class="pcv-alert-row">
-              <span class="pcv-dot pcv-dot--g"></span>
-              <span class="pcv-alert-text"><strong>SN44</strong> SRI rank improved 4 positions &mdash; now #14</span>
+            <div class="pcv-alert-row pcv-alert-row--g">
+              <span class="pcv-alert-type pcv-alert-type--g">Rank Up</span>
+              <div class="pcv-alert-body">
+                <span class="pcv-alert-subject">SN44 Score Vision</span>
+                <span class="pcv-alert-detail">SRI rank up 4 spots, now #14.</span>
+              </div>
               <span class="pcv-alert-time">18m ago</span>
             </div>
-            <div class="pcv-alert-row">
-              <span class="pcv-dot pcv-dot--a"></span>
-              <span class="pcv-alert-text"><strong>SN123</strong> Subnet re-registered &mdash; monitor for emission activity</span>
+            <div class="pcv-alert-row pcv-alert-row--a">
+              <span class="pcv-alert-type pcv-alert-type--a">Re-registered</span>
+              <div class="pcv-alert-body">
+                <span class="pcv-alert-subject">SN123</span>
+                <span class="pcv-alert-detail">Monitor for emission activity.</span>
+              </div>
               <span class="pcv-alert-time">1hr ago</span>
             </div>
-            <div class="pcv-alert-row">
-              <span class="pcv-dot pcv-dot--g"></span>
-              <span class="pcv-alert-text"><strong>SN09</strong> Stake inflow +18,400 TAO &mdash; 7-day high</span>
+            <div class="pcv-alert-row pcv-alert-row--g">
+              <span class="pcv-alert-type pcv-alert-type--g">Stake Inflow</span>
+              <div class="pcv-alert-body">
+                <span class="pcv-alert-subject">SN09</span>
+                <span class="pcv-alert-detail">+18,400 TAO, 7-day high.</span>
+              </div>
               <span class="pcv-alert-time">3hr ago</span>
             </div>
           </div>
@@ -1768,45 +1957,32 @@
 
       <!-- CARD 03: RESEARCH -->
       <div class="product-card">
-        <div class="product-card-visual" style="padding:0;">
-          <div class="pcv-research" style="flex:1;">
-            <div class="pcv-research-bar">
-              <span class="screenshot-dot red" style="width:7px;height:7px;"></span>
-              <span class="screenshot-dot yellow" style="width:7px;height:7px;"></span>
-              <span class="screenshot-dot green" style="width:7px;height:7px;"></span>
-              <span style="margin-left:6px;">TAO Institute Research</span>
-            </div>
-            <div class="pcv-research-body">
-              <div class="pcv-research-nav">
-                <span class="pcv-nav-active">Dashboard</span>
-                <span class="pcv-research-nav-label">Research</span>
-                <span>Subnet Risk</span>
-                <span>Deregister</span>
-                <span>TAO Flow</span>
+        <div class="product-card-visual" style="padding:0; justify-content:flex-start;">
+          <div class="pcv-rstack">
+            <a href="/research/yanez-sn54-initiation-of-coverage" class="pcv-ritem pcv-ritem--active">
+              <div class="pcv-ritem-top">
+                <span class="pcv-ritem-type pcv-ritem-type--thesis">Investment Thesis</span>
+                <span class="pcv-ritem-sri pcv-ritem-sri--green">82.4 GREEN</span>
               </div>
-              <div class="pcv-research-main">
-                <span class="pcv-research-eyebrow">TAO Institute Research</span>
-                <p class="pcv-research-title">Takeaways from Team Call &mdash; World Cup Readiness &amp; Two-a-Day Pilot Update</p>
-                <div class="pcv-research-meta">
-                  <span class="pcv-avatar">H</span>
-                  <span class="pcv-author-name">Haitzu</span>
-                  <span class="pcv-avatar">0</span>
-                  <span class="pcv-author-name">0xSammy</span>
-                  <span class="pcv-tag">Subnet Analysis</span>
-                </div>
-                <p class="pcv-research-preview">We hosted a call with the Score Vision founding team to get an update ahead of the 2026 FIFA World Cup. The subnet ranks #18 of 129 active subnets on the RAI Index.</p>
+              <p class="pcv-ritem-title">Yanez (SN54): Initiation of Coverage</p>
+              <p class="pcv-ritem-meta">Jack Ai-Leung &middot; Apr 2, 2026 &middot; 8 min</p>
+            </a>
+            <a href="/research/bitmind-sn34-initiation-of-coverage" class="pcv-ritem">
+              <div class="pcv-ritem-top">
+                <span class="pcv-ritem-type pcv-ritem-type--thesis">Investment Thesis</span>
+                <span class="pcv-ritem-sri pcv-ritem-sri--amber">61.1 AMBER</span>
               </div>
-              <div class="pcv-research-sidebar">
-                <span class="pcv-sri-label">SRI Rating</span>
-                <div class="pcv-sri-badge">
-                  <span class="pcv-sri-badge-score">72.8</span>
-                  <span class="pcv-sri-badge-text">Good</span>
-                </div>
-                <div class="pcv-sri-row"><span class="pcv-sri-row-k">Score</span><span class="pcv-sri-row-v">SN44</span></div>
-                <div class="pcv-sri-row"><span class="pcv-sri-row-k">Grade</span><span class="pcv-sri-row-v">B</span></div>
-                <div class="pcv-sri-row"><span class="pcv-sri-row-k">Rank</span><span class="pcv-sri-row-v">#18</span></div>
+              <p class="pcv-ritem-title">Bitmind (SN34): Initiation of Coverage</p>
+              <p class="pcv-ritem-meta">Jack Ai-Leung &middot; Apr 2, 2026 &middot; 8 min</p>
+            </a>
+            <a href="/research/test-metanova" class="pcv-ritem">
+              <div class="pcv-ritem-top">
+                <span class="pcv-ritem-type pcv-ritem-type--update">Monthly Update</span>
+                <span class="pcv-ritem-sri pcv-ritem-sri--green">88.2 GREEN</span>
               </div>
-            </div>
+              <p class="pcv-ritem-title">Metanova (SN12): Monthly Performance Review</p>
+              <p class="pcv-ritem-meta">0xSammy &middot; Apr 2, 2026 &middot; 4 min</p>
+            </a>
           </div>
         </div>
         <div class="product-card-body">
@@ -1894,19 +2070,19 @@
           <span>Scoring Methodology</span>
         </div>
         <div class="methodology-panel-row">
-          <p class="methodology-panel-question">Is the subnet attracting and retaining capital relative to its emission schedule?</p>
+          <p class="methodology-panel-question">Capital Retention</p>
           <p class="methodology-panel-metrics">Net Capital Flow Momentum, Emission Share, Delist Distance, Capital Retention</p>
         </div>
         <div class="methodology-panel-row">
-          <p class="methodology-panel-question">How healthy is the subnet's liquidity and token economics?</p>
+          <p class="methodology-panel-question">Liquidity &amp; Token Economics</p>
           <p class="methodology-panel-metrics">Liquidity Depth, Token Supply Maturity, Miner Economics Viability</p>
         </div>
         <div class="methodology-panel-row">
-          <p class="methodology-panel-question">Is the subnet's economic engine self-sustaining?</p>
+          <p class="methodology-panel-question">Economic Sustainability</p>
           <p class="methodology-panel-metrics">Coverage Ratio, Miner Churn Rate, Reward Distribution Concentration</p>
         </div>
         <div class="methodology-panel-row">
-          <p class="methodology-panel-question">How concentrated and active is the subnet's validator infrastructure?</p>
+          <p class="methodology-panel-question">Validator Infrastructure</p>
           <p class="methodology-panel-metrics">Validator Stake Concentration, Validation Freshness</p>
         </div>
         <div class="methodology-panel-cta">
@@ -1915,9 +2091,9 @@
       </div>
     </div>
     <div class="sri-legend reveal reveal-d2">
-      <span class="sri-legend-item"><span class="sri-legend-dot green"></span> Green: healthy risk profile</span>
-      <span class="sri-legend-item"><span class="sri-legend-dot amber"></span> Amber: monitor closely</span>
-      <span class="sri-legend-item"><span class="sri-legend-dot red"></span> Red: elevated risk, review before holding</span>
+      <span class="sri-legend-item"><span class="sri-legend-dot green"></span> Green: hold</span>
+      <span class="sri-legend-item"><span class="sri-legend-dot amber"></span> Amber: reduce exposure</span>
+      <span class="sri-legend-item"><span class="sri-legend-dot red"></span> Red: exit or avoid</span>
     </div>
   </div>
 </section>
@@ -2016,7 +2192,7 @@
 <section class="pricing-section">
   <div class="container pricing-inner">
     <div class="section-header reveal">
-      <p class="section-label">PRICING</p>
+      <p class="section-label">PRICING &mdash; Free for research. Enterprise for active allocators.</p>
     </div>
     <div class="pricing-cols reveal reveal-d1">
 
@@ -2043,14 +2219,14 @@
       <!-- ENTERPRISE -->
       <div class="pricing-col">
         <div class="pricing-col-header">
-          <div class="pricing-col-title">Enterprise Member</div>
+          <div class="pricing-col-title" style="font-size:18px;">Enterprise Member</div>
           <div class="pricing-col-sub">Full platform, real-time access</div>
         </div>
         <div class="pricing-col-features">
           <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Subnet Risk Index (SRI)</span></div>
           <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Subnet Analytics</span></div>
           <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Data Dashboards</span></div>
-          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Analyst Coverage, real-time</span></div>
+          <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Analyst Coverage, published same day</span></div>
           <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Custom Dashboards &amp; Alerts</span></div>
           <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">Subnet Diligence</span></div>
           <div class="pricing-feature"><span class="icon-check">&#10003;</span> <span class="feat-label">API &amp; Structured Data Feeds</span></div>
@@ -2083,7 +2259,7 @@
         </div>
         <div class="contact-card-info">
           <p class="contact-card-name">Jack Ai-Leung</p>
-          <p class="contact-card-title">Co-Founder, TAO Institute</p>
+          <p class="contact-card-title">Co-Founder, TAO Institute &mdash; Custom pricing. We respond within 24 hours.</p>
           <div class="contact-card-links">
             <a href="mailto:jack.leung@taoinstitute.io" class="contact-card-link">
               <svg width="12" height="12" fill="none" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm0 0l8 8 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2113,14 +2289,13 @@
       <div class="form-group">
         <label class="form-label">Interested In</label>
         <select class="form-select">
-          <option value="" disabled selected>Select a feature</option>
+          <option value="" disabled selected>Select a product</option>
           <option value="research">Real-Time Research</option>
           <option value="dashboards">Custom Dashboards &amp; Alerts</option>
           <option value="api">API Access</option>
         </select>
       </div>
       <button class="btn-submit">Request Enterprise Access &#8594;</button>
-      <p style="font-size:11px;color:var(--text-muted);margin-top:4px;">Custom pricing based on portfolio size and data requirements. We typically respond within 24 hours.</p>
     </div>
   </div>
 </section>
@@ -2130,7 +2305,7 @@
   <div class="container newsletter-section-inner">
     <div class="newsletter-section-left">
       <p class="newsletter-section-title">Monday morning: which subnets moved into red zone and why</p>
-      <p class="newsletter-section-desc">SRI score drops, validator exits, emission shifts, and research previews. In your inbox before markets open. Joined by 1,200+ subnet investors.</p>
+      <p class="newsletter-section-desc">Know before Monday open which subnets entered the red zone and why. Score drops, validator exits, emission shifts, and new research. 1,200+ subnet investors subscribed.</p>
     </div>
     <div class="newsletter-section-form">
       <input type="email" placeholder="name@firm.com">
@@ -2192,7 +2367,108 @@
 </footer>
 
 <script>
-// Scroll-triggered entrance animations
+// ── HALFTONE SPHERE ──
+(function() {
+  var canvas = document.getElementById('hero-sphere');
+  if (!canvas) return;
+
+  function draw() {
+    // Size canvas to its CSS display size for crisp rendering
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var rect = canvas.getBoundingClientRect();
+    var W = rect.width  * dpr;
+    var H = rect.height * dpr;
+    canvas.width  = W;
+    canvas.height = H;
+
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, W, H);
+
+    var cx = W * 0.5;
+    var cy = H * 0.5;
+    var radius = Math.min(W, H) * 0.44;
+
+    // Grid spacing scaled with DPR
+    var spacing = 11 * dpr;
+
+    // Light source: top-right, slightly toward viewer
+    var lx = 0.55, ly = -0.45, lz = 0.7;
+    var llen = Math.sqrt(lx*lx + ly*ly + lz*lz);
+    lx /= llen; ly /= llen; lz /= llen;
+
+    // Shadow/occlusion direction (opposite bottom-left)
+    for (var gy = 0; gy < H; gy += spacing) {
+      for (var gx = 0; gx < W; gx += spacing) {
+        var dx = (gx - cx) / radius;
+        var dy = (gy - cy) / radius;
+        var d2 = dx*dx + dy*dy;
+        if (d2 > 1) continue;
+
+        // Surface normal at this point on the sphere
+        var nz = Math.sqrt(1 - d2);
+
+        // Diffuse lighting
+        var diffuse = Math.max(0, dx*lx + dy*ly + nz*lz);
+
+        // Soft ambient so shadow side still shows faint dots
+        var brightness = 0.06 + 0.94 * diffuse;
+
+        // Fresnel-ish edge fade: dots shrink near silhouette
+        var edgeFade = Math.pow(nz, 0.35);
+
+        var maxR = spacing * 0.46;
+        var dotR = maxR * brightness * edgeFade;
+        if (dotR < 0.4) continue;
+
+        // Slightly warm white, fading to cooler grey in shadow
+        var alpha = 0.25 + 0.75 * brightness;
+        ctx.beginPath();
+        ctx.arc(gx, gy, dotR, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,252,' + alpha.toFixed(3) + ')';
+        ctx.fill();
+      }
+    }
+  }
+
+  // Draw once fonts/layout are settled, then redraw on resize
+  if (document.readyState === 'complete') {
+    draw();
+  } else {
+    window.addEventListener('load', draw);
+  }
+
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(draw, 80);
+  });
+})();
+
+// ── HERO FULL-VIEWPORT HEIGHT ──
+// Measures the hero's actual top offset (banner + header, whatever their
+// real rendered heights are) and sets min-height so the hero always fills
+// exactly the remaining viewport — at every resolution, on every resize.
+(function() {
+  var heroInner = document.querySelector('.hero-inner');
+  if (!heroInner) return;
+
+  function setHeroHeight() {
+    // Use visualViewport when available (handles mobile browser chrome correctly)
+    var vh = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
+    var heroTop = heroInner.getBoundingClientRect().top + window.scrollY;
+    heroInner.style.minHeight = Math.max(400, vh - heroTop) + 'px';
+  }
+
+  setHeroHeight();
+  window.addEventListener('resize', setHeroHeight);
+
+  // visualViewport fires when mobile browser chrome appears/disappears
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setHeroHeight);
+  }
+})();
+
+// ── SCROLL-TRIGGERED ENTRANCE ANIMATIONS ──
 (function() {
   var els = document.querySelectorAll('.reveal');
   if (!els.length) return;
